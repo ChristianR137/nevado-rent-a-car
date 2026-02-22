@@ -29,7 +29,7 @@ export default function ThemeToggle() {
                 transition-all duration-200 ease-in-out
                 border
                 ${isDark
-                    ? 'bg-dark-700 border-dark-500 text-primary hover:bg-dark-600 hover:border-primary/40 hover:shadow-gold-sm'
+                    ? 'bg-dark-700 border-dark-500 text-primary hover:bg-dark-600 hover:border-primary/40 hover:shadow-primary-sm'
                     : 'bg-amber-50 border-amber-200 text-amber-600 hover:bg-amber-100 hover:border-amber-400'
                 }
             `}

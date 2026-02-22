@@ -17,7 +17,7 @@ interface BookingPanelProps {
 
 export default function BookingPanel({ vehicle }: BookingPanelProps) {
     const router = useRouter();
-    const { setVehicle, setDates, setPickupLocation, toggleService, additionalServices } = useBookingStore();
+    const { setVehicle, setDates, setPickupLocation, toggleService, removeService, additionalServices } = useBookingStore();
 
     const today = new Date().toISOString().split('T')[0];
     const tomorrow = new Date(Date.now() + 86400000).toISOString().split('T')[0];
@@ -25,6 +25,8 @@ export default function BookingPanel({ vehicle }: BookingPanelProps) {
     const [startDate, setStartDateLocal] = useState(today);
     const [endDate, setEndDateLocal] = useState(tomorrow);
     const [pickupLoc, setPickupLoc] = useState('');
+    const [pickupDetail, setPickupDetail] = useState('');
+    const [showAllServices, setShowAllServices] = useState(false);
 
     const days = calculateDays(startDate, endDate);
     const servicesTotal = additionalServices.reduce((acc, s) => acc + s.pricePerDay * days, 0);
@@ -33,7 +35,9 @@ export default function BookingPanel({ vehicle }: BookingPanelProps) {
     const handleReserve = () => {
         setVehicle(vehicle);
         setDates(startDate, endDate);
-        if (pickupLoc) setPickupLocation(pickupLoc);
+        if (pickupLoc) {
+            setPickupLocation(pickupLoc === 'otro' ? `Otro: ${pickupDetail}` : pickupLoc);
+        }
         router.push('/booking');
     };
 
@@ -79,11 +83,17 @@ export default function BookingPanel({ vehicle }: BookingPanelProps) {
                     </div>
                 </div>
                 <div>
-                    <label className="block text-xs font-medium text-gray-500 dark:text-text-secondary mb-1.5 uppercase tracking-wide">Lugar de Recojo</label>
+                    <label className="block text-xs font-medium text-gray-500 dark:text-text-secondary mb-1.5 uppercase tracking-wide">Lugar de Entrega</label>
                     <div className="relative">
                         <select
                             value={pickupLoc}
-                            onChange={(e) => setPickupLoc(e.target.value)}
+                            onChange={(e) => {
+                                const newLoc = e.target.value;
+                                setPickupLoc(newLoc);
+                                if (newLoc !== 'piura') {
+                                    removeService('entrega-aeropuerto');
+                                }
+                            }}
                             className="input-dark pr-9 appearance-none cursor-pointer text-sm"
                         >
                             <option value="">Selecciona un lugar</option>
@@ -93,32 +103,63 @@ export default function BookingPanel({ vehicle }: BookingPanelProps) {
                         </select>
                         <ChevronDown size={13} className="absolute right-3 top-1/2 -translate-y-1/2 text-text-muted pointer-events-none" />
                     </div>
+                    {pickupLoc === 'otro' && (
+                        <div className="mt-2 animate-fade-in relative">
+                            <input
+                                type="text"
+                                maxLength={20}
+                                value={pickupDetail}
+                                onChange={(e) => setPickupDetail(e.target.value)}
+                                placeholder="Especifica el lugar (máx 20 carácteres)"
+                                className="input-dark text-sm"
+                            />
+                            <div className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] text-gray-400">
+                                {pickupDetail.length}/20
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
 
             {/* Additional Services */}
             <div>
-                <p className="text-xs font-medium text-gray-500 dark:text-text-secondary uppercase tracking-wide mb-2">Extras</p>
-                <div className="space-y-2">
-                    {ADDITIONAL_SERVICES.slice(0, 3).map((svc) => {
-                        const isSelected = additionalServices.some((s) => s.id === svc.id);
-                        return (
+                <div className="flex items-center justify-between mb-2">
+                    <p className="text-xs font-medium text-gray-500 dark:text-text-secondary uppercase tracking-wide">Extras</p>
+                    {(() => {
+                        const availableServices = ADDITIONAL_SERVICES.filter(svc => !(svc.id === 'entrega-aeropuerto' && pickupLoc !== 'piura'));
+                        return availableServices.length > 3 && (
                             <button
-                                key={svc.id}
-                                onClick={() => toggleService(svc)}
-                                className={`w-full flex items-center justify-between p-3 rounded-xl border text-left transition-all duration-200 ${isSelected
-                                    ? 'border-primary bg-primary/10 text-gray-900 dark:text-white'
-                                    : 'border-gray-200 dark:border-dark-500 bg-gray-50 dark:bg-dark-700 text-gray-500 dark:text-text-secondary hover:border-gray-300 dark:hover:border-dark-400'
-                                    }`}
+                                onClick={() => setShowAllServices(!showAllServices)}
+                                className="text-xs text-primary hover:text-primary-dark transition-colors"
                             >
-                                <span className="text-xs font-medium">{svc.name}</span>
-                                <div className="flex items-center gap-2">
-                                    <span className="text-xs text-primary">+{formatCurrency(svc.pricePerDay)}/día</span>
-                                    {isSelected ? <Minus size={13} className="text-primary" /> : <Plus size={13} />}
-                                </div>
+                                {showAllServices ? 'Ver menos' : 'Ver todos'}
                             </button>
                         );
-                    })}
+                    })()}
+                </div>
+                <div className="space-y-2">
+                    {(() => {
+                        const availableServices = ADDITIONAL_SERVICES.filter(svc => !(svc.id === 'entrega-aeropuerto' && pickupLoc !== 'piura'));
+                        return (showAllServices ? availableServices : availableServices.slice(0, 3)).map((svc) => {
+                            const isSelected = additionalServices.some((s) => s.id === svc.id);
+                            return (
+                                <button
+                                    key={svc.id}
+                                    onClick={() => toggleService(svc)}
+                                    className={`w-full flex items-center justify-between p-3 rounded-xl border text-left transition-all duration-200 ${isSelected
+                                        ? 'border-primary bg-primary/10 text-gray-900 dark:text-white'
+                                        : 'border-gray-200 dark:border-dark-500 bg-gray-50 dark:bg-dark-700 text-gray-500 dark:text-text-secondary hover:border-gray-300 dark:hover:border-dark-400'
+                                        }`}
+                                >
+                                    <span className="text-xs font-medium">{svc.name}</span>
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-xs text-primary">+{formatCurrency(svc.pricePerDay)}/día</span>
+                                        {isSelected ? <Minus size={13} className="text-primary" /> : <Plus size={13} />}
+                                    </div>
+                                </button>
+                            );
+                        });
+                    })()}
                 </div>
             </div>
 

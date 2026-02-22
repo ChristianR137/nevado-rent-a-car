@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 
@@ -42,12 +43,12 @@ export default function Navbar() {
                 <div className="flex items-center justify-between h-16 md:h-20">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-2 group">
-                        <div className="w-9 h-9 rounded-lg bg-gradient-gold flex items-center justify-center shadow-gold-sm group-hover:shadow-gold transition-shadow duration-200">
-                            <span className="text-black font-bold text-lg font-serif">N</span>
+                        <div className="w-10 h-10 rounded-lg overflow-hidden flex items-center justify-center shadow-primary-sm group-hover:shadow-primary transition-shadow duration-200">
+                            <Image src="/logonevado.jpg" alt="Nevado Rent A Car Logo" width={40} height={40} className="object-cover w-full h-full" />
                         </div>
                         <div className="hidden sm:block">
                             <span className="text-gray-900 dark:text-white font-serif font-bold text-lg leading-none block">
-                                Nevado
+                                Nevado Perú
                             </span>
                             <span className="text-primary text-xs font-medium tracking-wider uppercase leading-none">
                                 Rent A Car

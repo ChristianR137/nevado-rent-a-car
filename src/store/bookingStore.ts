@@ -19,6 +19,7 @@ interface BookingState {
     setDates: (startDate: string, endDate: string) => void;
     setPickupLocation: (location: string) => void;
     toggleService: (service: AdditionalService) => void;
+    removeService: (serviceId: string) => void;
     reset: () => void;
 }
 
@@ -66,6 +67,13 @@ export const useBookingStore = create<BookingState>((set, get) => ({
         const updated = exists
             ? additionalServices.filter((s) => s.id !== service.id)
             : [...additionalServices, service];
+        const totals = computeTotals(selectedVehicle, startDate, endDate, updated);
+        set({ additionalServices: updated, ...totals });
+    },
+
+    removeService: (serviceId) => {
+        const { additionalServices, selectedVehicle, startDate, endDate } = get();
+        const updated = additionalServices.filter((s) => s.id !== serviceId);
         const totals = computeTotals(selectedVehicle, startDate, endDate, updated);
         set({ additionalServices: updated, ...totals });
     },

@@ -38,7 +38,7 @@ export default function ServicesPage() {
                         return (
                             <div key={svc.id} className="card-glass p-6 hover-card group">
                                 {svc.isPopular && (
-                                    <span className="badge-gold text-xs mb-4 block w-fit">Más solicitado</span>
+                                    <span className="badge-primary text-xs mb-4 block w-fit">Más solicitado</span>
                                 )}
                                 <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                                     <Icon size={22} className="text-primary" />

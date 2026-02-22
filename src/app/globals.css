@@ -26,7 +26,7 @@
 
 
   ::selection {
-    @apply bg-primary text-black;
+    @apply bg-primary text-white;
   }
 
   ::-webkit-scrollbar {
@@ -56,8 +56,8 @@
   }
 
   .gradient-text {
-    @apply bg-gradient-gold bg-clip-text text-transparent;
-    background: linear-gradient(135deg, #C8960C 0%, #E4B020 50%, #A67C00 100%);
+    @apply bg-gradient-primary bg-clip-text text-transparent;
+    background: linear-gradient(135deg, #DC2626 0%, #EF4444 50%, #991B1B 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -69,11 +69,11 @@
   }
 
   .btn-primary {
-    @apply bg-primary hover:bg-primary-dark text-black font-semibold px-6 py-3 rounded-xl transition-all duration-200 ease-in-out hover:shadow-gold hover:-translate-y-0.5 active:translate-y-0 active:shadow-none;
+    @apply bg-primary hover:bg-primary-dark text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200 ease-in-out hover:shadow-primary hover:-translate-y-0.5 active:translate-y-0 active:shadow-none;
   }
 
   .btn-outline {
-    @apply border border-primary text-primary hover:bg-primary hover:text-black font-semibold px-6 py-3 rounded-xl transition-all duration-200 ease-in-out hover:shadow-gold-sm;
+    @apply border border-primary text-primary hover:bg-primary hover:text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200 ease-in-out hover:shadow-primary-sm;
   }
 
   .btn-ghost {
@@ -88,7 +88,7 @@
     @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium;
   }
 
-  .badge-gold {
+  .badge-primary {
     @apply badge bg-primary/10 text-primary border border-primary/20;
   }
 
@@ -126,16 +126,16 @@
     text-wrap: balance;
   }
 
-  .glow-gold {
-    box-shadow: 0 0 20px rgba(200, 150, 12, 0.3);
+  .glow-primary {
+    box-shadow: 0 0 20px rgba(220, 38, 38, 0.3);
   }
 
-  .glow-gold-sm {
-    box-shadow: 0 0 10px rgba(200, 150, 12, 0.2);
+  .glow-primary-sm {
+    box-shadow: 0 0 10px rgba(220, 38, 38, 0.2);
   }
 
-  .border-gold-gradient {
+  .border-primary-gradient {
     border: 1px solid;
-    border-image: linear-gradient(135deg, #C8960C, #E4B020) 1;
+    border-image: linear-gradient(135deg, #DC2626, #EF4444) 1;
   }
 }

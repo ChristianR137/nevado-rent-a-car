@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import {
     Plane, Clock, MapPin, CheckCircle2, Phone, MessageCircle,
-    Car, ShieldCheck, Star, ArrowRight, Navigation
+    Car, ShieldCheck, Zap, ArrowRight, Navigation
 } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -112,7 +112,7 @@ export default function AirportPage() {
                         {[
                             { icon: Clock, label: 'Horario de entrega', value: '5:00 AM – 11:00 PM' },
                             { icon: ShieldCheck, label: 'Costo extra', value: 'Sin cargo adicional' },
-                            { icon: Star, label: 'Tiempo de entrega', value: '~10 minutos' },
+                            { icon: Zap, label: 'Tiempo de entrega', value: '~10 minutos' },
                             { icon: Navigation, label: 'Distancia al centro', value: '2 km del centro de Piura' },
                         ].map((item) => {
                             const Icon = item.icon;

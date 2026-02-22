@@ -17,6 +17,7 @@ export default function SearchBar({ compact = false }: SearchBarProps) {
 
     const [form, setForm] = useState({
         pickupLocation: searchParams.get('pickupLocation') || '',
+        pickupDetail: '',
         startDate: searchParams.get('startDate') || today,
         endDate: searchParams.get('endDate') || tomorrow,
     });
@@ -28,7 +29,11 @@ export default function SearchBar({ compact = false }: SearchBarProps) {
     const handleSearch = (e: React.FormEvent) => {
         e.preventDefault();
         const params = new URLSearchParams();
-        if (form.pickupLocation) params.set('pickupLocation', form.pickupLocation);
+        const finalLocation = form.pickupLocation === 'otro' && form.pickupDetail
+            ? `Otro: ${form.pickupDetail}`
+            : form.pickupLocation;
+
+        if (finalLocation) params.set('pickupLocation', finalLocation);
         if (form.startDate) params.set('startDate', form.startDate);
         if (form.endDate) params.set('endDate', form.endDate);
         router.push(`/catalog?${params.toString()}`);
@@ -44,7 +49,7 @@ export default function SearchBar({ compact = false }: SearchBarProps) {
                 {/* Pickup Location */}
                 <div className="relative md:col-span-1">
                     <label className="block text-xs font-medium text-gray-500 dark:text-text-secondary mb-1.5 uppercase tracking-wide">
-                        Lugar de Recojo
+                        Lugar de Entrega
                     </label>
                     <div className="relative">
                         <MapPin size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-primary pointer-events-none" />
@@ -63,6 +68,19 @@ export default function SearchBar({ compact = false }: SearchBarProps) {
                         </select>
                         <ChevronDown size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-text-muted pointer-events-none" />
                     </div>
+                    {form.pickupLocation === 'otro' && (
+                        <div className="mt-2 relative animate-fade-in">
+                            <input
+                                type="text"
+                                name="pickupDetail"
+                                maxLength={20}
+                                value={form.pickupDetail}
+                                onChange={handleChange}
+                                placeholder="Especifíca (máx 20)"
+                                className="input-dark text-sm w-full"
+                            />
+                        </div>
+                    )}
                 </div>
 
                 {/* Start Date */}

@@ -11,9 +11,9 @@ const config: Config = {
         extend: {
             colors: {
                 primary: {
-                    DEFAULT: "#C8960C",
-                    dark: "#A67C00",
-                    light: "#E4B020",
+                    DEFAULT: "#DC2626",
+                    dark: "#991B1B",
+                    light: "#EF4444",
                 },
                 dark: {
                     DEFAULT: "#0A0A0A",
@@ -42,8 +42,8 @@ const config: Config = {
             },
             backgroundImage: {
                 "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-                "gradient-gold":
-                    "linear-gradient(135deg, #C8960C 0%, #E4B020 50%, #A67C00 100%)",
+                "gradient-primary":
+                    "linear-gradient(135deg, #DC2626 0%, #EF4444 50%, #991B1B 100%)",
                 "hero-gradient":
                     "linear-gradient(to bottom, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.9) 100%)",
             },
@@ -73,9 +73,9 @@ const config: Config = {
                 },
             },
             boxShadow: {
-                "gold-sm": "0 2px 8px rgba(200, 150, 12, 0.15)",
-                gold: "0 4px 20px rgba(200, 150, 12, 0.25)",
-                "gold-lg": "0 8px 40px rgba(200, 150, 12, 0.35)",
+                "primary-sm": "0 2px 8px rgba(220, 38, 38, 0.15)",
+                primary: "0 4px 20px rgba(220, 38, 38, 0.25)",
+                "primary-lg": "0 8px 40px rgba(220, 38, 38, 0.35)",
                 card: "0 4px 24px rgba(0, 0, 0, 0.4)",
                 "card-hover": "0 8px 48px rgba(0, 0, 0, 0.6)",
             },

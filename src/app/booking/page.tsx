@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { User, Calendar, Phone, Mail, MapPin, ArrowRight, Check } from 'lucide-react';
@@ -11,31 +11,65 @@ import { ADDITIONAL_SERVICES } from '@/constants/additionalServices';
 import { PICKUP_LOCATIONS } from '@/constants/pickupLocations';
 import { formatCurrency } from '@/lib/utils/formatCurrency';
 import { bookingSchema, type BookingFormSchema } from '@/lib/validations/bookingSchema';
+import { getVehicleBySlug } from '@/lib/data/vehicles';
 
 export default function BookingPage() {
     const router = useRouter();
+    const searchParams = useSearchParams();
     const {
         selectedVehicle, startDate, endDate, pickupLocation,
         additionalServices, totalDays, subtotal, servicesTotal, totalPrice,
-        setDates, setPickupLocation, toggleService,
+        setDates, setPickupLocation, toggleService, removeService, setVehicle,
     } = useBookingStore();
 
     const today = new Date().toISOString().split('T')[0];
 
     const {
-        register, handleSubmit, formState: { errors, isSubmitting },
+        register, handleSubmit, watch, formState: { errors, isSubmitting },
     } = useForm<BookingFormSchema>({
         resolver: zodResolver(bookingSchema),
         defaultValues: {
             pickupLocation: pickupLocation || '',
+            pickupDetail: '',
             startDate: startDate || today,
             endDate: endDate || '',
         },
     });
 
+    const watchedPickupLocation = watch('pickupLocation');
+    const watchedStartDate = watch('startDate');
+    const watchedEndDate = watch('endDate');
+
+    // Reactively update dates in store
+    useEffect(() => {
+        if (watchedStartDate && watchedEndDate) {
+            setDates(watchedStartDate, watchedEndDate);
+        }
+    }, [watchedStartDate, watchedEndDate, setDates]);
+
+    // Auto-select vehicle from query params if available
+    useEffect(() => {
+        const vehicleSlug = searchParams.get('vehicle');
+        if (vehicleSlug && !selectedVehicle) {
+            const vehicle = getVehicleBySlug(vehicleSlug);
+            if (vehicle) {
+                setVehicle(vehicle);
+            }
+        }
+    }, [searchParams, selectedVehicle, setVehicle]);
+
+    useEffect(() => {
+        if (watchedPickupLocation !== 'piura') {
+            removeService('entrega-aeropuerto');
+        }
+    }, [watchedPickupLocation, removeService]);
+
     const onSubmit = async (data: BookingFormSchema) => {
         setDates(data.startDate, data.endDate);
-        setPickupLocation(data.pickupLocation);
+        const finalLocation = data.pickupLocation === 'otro' && data.pickupDetail
+            ? `Otro: ${data.pickupDetail}`
+            : data.pickupLocation;
+        setPickupLocation(finalLocation);
         await new Promise((res) => setTimeout(res, 800));
         toast.success('¡Solicitud enviada! Te contactaremos pronto.');
         router.push('/booking/confirmation');
@@ -124,7 +158,7 @@ export default function BookingPage() {
                                     </div>
                                     <div className="sm:col-span-2">
                                         <label className="block text-xs font-medium text-gray-500 dark:text-text-secondary mb-1.5 uppercase tracking-wide">
-                                            Lugar de recojo *
+                                            Lugar de entrega *
                                         </label>
                                         <select {...register('pickupLocation')} className={`${inputClass(!!errors.pickupLocation)} appearance-none`}>
                                             <option value="">Selecciona un lugar</option>
@@ -133,6 +167,19 @@ export default function BookingPage() {
                                             ))}
                                         </select>
                                         {errors.pickupLocation && <p className="text-red-400 text-xs mt-1">{errors.pickupLocation.message}</p>}
+
+                                        {watchedPickupLocation === 'otro' && (
+                                            <div className="mt-3 relative animate-fade-in">
+                                                <input
+                                                    {...register('pickupDetail')}
+                                                    type="text"
+                                                    maxLength={20}
+                                                    placeholder="Especifica el lugar de entrega (máx 20)"
+                                                    className={inputClass(!!errors.pickupDetail)}
+                                                />
+                                                {errors.pickupDetail && <p className="text-red-400 text-xs mt-1">{errors.pickupDetail.message}</p>}
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -141,7 +188,7 @@ export default function BookingPage() {
                             <div className="card-glass p-6">
                                 <h2 className="font-semibold text-gray-900 dark:text-white mb-5">Servicios Adicionales</h2>
                                 <div className="grid sm:grid-cols-2 gap-3">
-                                    {ADDITIONAL_SERVICES.map((svc) => {
+                                    {ADDITIONAL_SERVICES.filter(svc => !(svc.id === 'entrega-aeropuerto' && watchedPickupLocation !== 'piura')).map((svc) => {
                                         const isSelected = additionalServices.some((s) => s.id === svc.id);
                                         return (
                                             <button
@@ -160,7 +207,7 @@ export default function BookingPage() {
                                                         <p className="text-gray-400 dark:text-text-muted text-xs mt-0.5 leading-relaxed">{svc.description}</p>
                                                     </div>
                                                     <div className={`w-5 h-5 rounded-full border flex items-center justify-center shrink-0 mt-0.5 ${isSelected ? 'bg-primary border-primary' : 'border-gray-300 dark:border-dark-500'}`}>
-                                                        {isSelected && <Check size={11} className="text-black" />}
+                                                        {isSelected && <Check size={11} className="text-white" />}
                                                     </div>
                                                 </div>
                                                 <p className="text-primary text-xs font-semibold mt-2">+{formatCurrency(svc.pricePerDay)}/día</p>

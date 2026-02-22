@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Users, Fuel, Settings, Star } from 'lucide-react';
+import { Users, Fuel, Settings } from 'lucide-react';
 import { Vehicle } from '@/types/vehicle';
 import { formatCurrency } from '@/lib/utils/formatCurrency';
 
@@ -64,27 +64,7 @@ export default function VehicleCard({ vehicle }: VehicleCardProps) {
                     </div>
                     <p className="text-gray-400 dark:text-text-secondary text-sm mb-4">{vehicle.year}</p>
 
-                    {/* Rating */}
-                    {vehicle.rating && (
-                        <div className="flex items-center gap-1.5 mb-4">
-                            <div className="flex items-center gap-0.5">
-                                {[...Array(5)].map((_, i) => (
-                                    <Star
-                                        key={i}
-                                        size={12}
-                                        className={
-                                            i < Math.floor(vehicle.rating!)
-                                                ? 'text-primary fill-primary'
-                                                : 'text-gray-300 dark:text-dark-500'
-                                        }
-                                    />
-                                ))}
-                            </div>
-                            <span className="text-gray-400 dark:text-text-secondary text-xs">
-                                {vehicle.rating} ({vehicle.reviewCount} reseñas)
-                            </span>
-                        </div>
-                    )}
+
 
                     {/* Specs Grid */}
                     <div className="grid grid-cols-3 gap-3 mb-5 py-4 border-t border-b border-gray-100 dark:border-dark-600">
@@ -116,7 +96,7 @@ export default function VehicleCard({ vehicle }: VehicleCardProps) {
                             </span>
                             <span className="text-gray-400 dark:text-text-secondary text-sm">/día</span>
                         </div>
-                        <span className="btn-outline text-sm px-4 py-2 group-hover:bg-primary group-hover:text-black transition-all duration-200">
+                        <span className="btn-outline text-sm px-4 py-2 group-hover:bg-primary group-hover:text-white transition-all duration-200">
                             Ver detalles
                         </span>
                     </div>

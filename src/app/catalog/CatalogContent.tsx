@@ -67,7 +67,7 @@ export default function CatalogContent() {
                             <SlidersHorizontal size={16} />
                             Filtros
                             {activeFilterCount > 0 && (
-                                <span className="w-5 h-5 rounded-full bg-primary text-black text-xs flex items-center justify-center font-bold">
+                                <span className="w-5 h-5 rounded-full bg-primary text-white text-xs flex items-center justify-center font-bold">
                                     {activeFilterCount}
                                 </span>
                             )}

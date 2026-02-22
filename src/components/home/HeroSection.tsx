@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowRight, Shield, Star, Clock } from 'lucide-react';
+import { ArrowRight, Shield, Clock } from 'lucide-react';
 import { Suspense } from 'react';
 import SearchBar from '@/components/home/SearchBar';
 
@@ -15,8 +15,8 @@ export default function HeroSection() {
             <div
                 className="absolute inset-0 opacity-5"
                 style={{
-                    backgroundImage: `linear-gradient(rgba(200,150,12,0.3) 1px, transparent 1px),
-                            linear-gradient(90deg, rgba(200,150,12,0.3) 1px, transparent 1px)`,
+                    backgroundImage: `linear-gradient(rgba(220,38,38,0.3) 1px, transparent 1px),
+                            linear-gradient(90deg, rgba(220,38,38,0.3) 1px, transparent 1px)`,
                     backgroundSize: '60px 60px',
                 }}
             />
@@ -26,19 +26,18 @@ export default function HeroSection() {
                     {/* Eyebrow */}
                     <div className="flex items-center gap-2 mb-6 animate-fade-in">
                         <div className="h-px w-8 bg-primary" />
-                        <span className="section-label">Cusco &amp; Sur del Perú</span>
+                        <span className="section-label">Piura &amp; Norte del Perú</span>
                     </div>
 
                     {/* Headline */}
                     <h1 className="heading-xl text-gray-900 dark:text-white mb-6 animate-slide-up">
-                        Explora Cusco al{' '}
-                        <span className="gradient-text">volante perfecto</span>
+                        Tu viaje por el norte empieza con el{' '}
+                        <span className="gradient-text">vehículo ideal</span>
                     </h1>
 
                     {/* Subheadline */}
                     <p className="text-gray-500 dark:text-text-secondary text-lg md:text-xl leading-relaxed max-w-2xl mb-10 animate-slide-up">
-                        Flota premium de SUVs, pickups y sedanes para recorrer el Valle Sagrado, Machu Picchu y más.
-                        Alquiler flexible, precios transparentes y servicio de primera.
+                        Contamos con una flota premium de SUVs, pickups 4x4 y sedanes listos para la ruta costera o tus viajes de negocios. Alquiler flexible, entrega en aeropuerto, atención a flotas corporativas y servicio de primera.
                     </p>
 
                     {/* Trust badges */}
@@ -47,10 +46,7 @@ export default function HeroSection() {
                             <Shield size={16} className="text-primary" />
                             <span>Flota asegurada</span>
                         </div>
-                        <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-text-secondary">
-                            <Star size={16} className="text-primary fill-primary" />
-                            <span>4.8/5 valoración promedio</span>
-                        </div>
+
                         <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-text-secondary">
                             <Clock size={16} className="text-primary" />
                             <span>Asistencia 24/7</span>

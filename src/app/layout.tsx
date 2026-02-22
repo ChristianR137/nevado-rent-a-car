@@ -62,7 +62,7 @@ export default function RootLayout({
                 border: '1px solid #2E2E2E',
               },
               success: {
-                iconTheme: { primary: '#C8960C', secondary: '#0A0A0A' },
+                iconTheme: { primary: '#DC2626', secondary: '#0A0A0A' },
               },
             }}
           />

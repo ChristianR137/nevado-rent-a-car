@@ -4,7 +4,8 @@ import { getFeaturedVehicles } from '@/lib/data/vehicles';
 import VehicleCard from '@/components/catalog/VehicleCard';
 
 export default function FeaturedVehicles() {
-    const vehicles = getFeaturedVehicles();
+    // Take 3 popular vehicles for a complete row (could be 6 for two rows)
+    const vehicles = getFeaturedVehicles().slice(0, 3);
 
     return (
         <section className="section-padding bg-gray-50 dark:bg-dark">
@@ -18,8 +19,7 @@ export default function FeaturedVehicles() {
                             <span className="gradient-text">populares</span>
                         </h2>
                         <p className="text-gray-500 dark:text-text-secondary mt-3 max-w-lg">
-                            Los favoritos de nuestros clientes para explorar la región de Cusco y el Valle Sagrado.
-                        </p>
+                            Los favoritos de nuestros clientes para explorar la región de Piura y disfrutar de las mejores playas del norte.                        </p>
                     </div>
                     <Link
                         href="/catalog"
@@ -31,7 +31,7 @@ export default function FeaturedVehicles() {
                 </div>
 
                 {/* Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {vehicles.map((vehicle) => (
                         <VehicleCard key={vehicle.id} vehicle={vehicle} />
                     ))}

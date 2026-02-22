@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { Users, Settings, Fuel, Briefcase, Shield, Star, ArrowLeft, Check, DoorOpen } from 'lucide-react';
+import { Users, Settings, Fuel, Briefcase, Shield, ArrowLeft, Check, DoorOpen } from 'lucide-react';
 import { getVehicleBySlug, getRelatedVehicles } from '@/lib/data/vehicles';
 import { formatCurrency } from '@/lib/utils/formatCurrency';
 import BookingPanel from '@/components/vehicle/BookingPanel';
@@ -56,7 +56,7 @@ export default async function VehicleDetailPage({ params }: PageProps) {
                         {/* Header */}
                         <div>
                             <div className="flex flex-wrap items-center gap-2 mb-2">
-                                <span className="badge-gold text-xs">{vehicle.type}</span>
+                                <span className="badge-primary text-xs">{vehicle.type}</span>
                                 {vehicle.isPopular && (
                                     <span className="badge bg-primary/20 text-primary border border-primary/30 text-xs">Popular</span>
                                 )}
@@ -67,18 +67,7 @@ export default async function VehicleDetailPage({ params }: PageProps) {
                             <p className="text-gray-500 dark:text-text-secondary">{vehicle.brand} · {vehicle.year}</p>
                         </div>
 
-                        {/* Rating */}
-                        {vehicle.rating && (
-                            <div className="flex items-center gap-2">
-                                <div className="flex items-center gap-0.5">
-                                    {[...Array(5)].map((_, i) => (
-                                        <Star key={i} size={14} className={i < Math.floor(vehicle.rating!) ? 'text-primary fill-primary' : 'text-gray-300 dark:text-dark-500'} />
-                                    ))}
-                                </div>
-                                <span className="text-gray-900 dark:text-white font-semibold text-sm">{vehicle.rating}</span>
-                                <span className="text-gray-500 dark:text-text-secondary text-sm">({vehicle.reviewCount} reseñas)</span>
-                            </div>
-                        )}
+
 
                         {/* Image Gallery Placeholder */}
                         <div className="rounded-2xl overflow-hidden bg-gray-100 dark:bg-dark-800 border border-gray-200 dark:border-dark-600">

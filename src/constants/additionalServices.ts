@@ -4,7 +4,7 @@ export const ADDITIONAL_SERVICES: AdditionalService[] = [
     {
         id: 'conductor-privado',
         name: 'Conductor Privado',
-        description: 'Chofer profesional con experiencia en rutas de montaña y destinos turísticos de la región Cusco.',
+        description: 'Chofer profesional con experiencia en rutas costeras y los mejores destinos turísticos de la región Piura.',
         pricePerDay: 120,
         icon: 'UserCheck',
         isPopular: true,
@@ -18,14 +18,6 @@ export const ADDITIONAL_SERVICES: AdditionalService[] = [
         isPopular: true,
     },
     {
-        id: 'entrega-aeropuerto',
-        name: 'Entrega en Aeropuerto',
-        description: 'Recibe tu vehículo directamente en el Aeropuerto Alejandro Velasco Astete sin tiempo de espera.',
-        pricePerDay: 50,
-        icon: 'Plane',
-        isPopular: false,
-    },
-    {
         id: 'asistencia-24-7',
         name: 'Asistencia 24/7',
         description: 'Soporte técnico y asistencia en carretera disponible las 24 horas durante todo tu recorrido.',
@@ -34,9 +26,17 @@ export const ADDITIONAL_SERVICES: AdditionalService[] = [
         isPopular: true,
     },
     {
+        id: 'entrega-aeropuerto',
+        name: 'Entrega en Aeropuerto',
+        description: 'Entrega directa en el aeropuerto de Piura. Tu vehículo te estará esperando para que empieces tu viaje o ruta de negocios sin demoras.',
+        pricePerDay: 50,
+        icon: 'Plane',
+        isPopular: false,
+    },
+    {
         id: 'gps-navegador',
         name: 'GPS / Navegador',
-        description: 'Navegador GPS actualizado con mapas de Cusco, Valle Sagrado, Puno y principales rutas del sur.',
+        description: 'Navegador GPS configurado con mapas detallados de la costa norte, sus playas y las rutas comerciales más importantes.',
         pricePerDay: 15,
         icon: 'MapPin',
         isPopular: false,

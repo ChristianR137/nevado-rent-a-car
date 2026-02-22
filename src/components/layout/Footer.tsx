@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Phone, Mail, MapPin, Instagram, Facebook, Youtube } from 'lucide-react';
 import { generateWhatsAppLink } from '@/lib/utils/generateWhatsAppLink';
 
@@ -12,9 +13,9 @@ const footerLinks = {
         { href: '/contact', label: 'Contacto' },
     ],
     legal: [
-        { href: '#', label: 'Términos y Condiciones' },
-        { href: '#', label: 'Política de Privacidad' },
-        { href: '#', label: 'Políticas de Cancelación' },
+        { href: '/terms', label: 'Términos y Condiciones' },
+        { href: '/privacy', label: 'Política de Privacidad' },
+        { href: '/cancellation', label: 'Políticas de Cancelación' },
     ],
 };
 
@@ -29,12 +30,12 @@ export default function Footer() {
                     {/* Brand Column */}
                     <div className="lg:col-span-1">
                         <Link href="/" className="flex items-center gap-2 mb-4">
-                            <div className="w-9 h-9 rounded-lg bg-gradient-gold flex items-center justify-center">
-                                <span className="text-black font-bold text-lg font-serif">N</span>
+                            <div className="w-10 h-10 rounded-lg overflow-hidden flex items-center justify-center shadow-sm">
+                                <Image src="/logonevado.jpg" alt="Nevado Rent A Car Logo" width={40} height={40} className="object-cover w-full h-full" />
                             </div>
                             <div>
                                 <span className="text-gray-900 dark:text-white font-serif font-bold text-lg leading-none block">
-                                    Nevado
+                                    Nevado Perú
                                 </span>
                                 <span className="text-primary text-xs font-medium tracking-wider uppercase leading-none">
                                     Rent A Car
@@ -42,7 +43,7 @@ export default function Footer() {
                             </div>
                         </Link>
                         <p className="text-gray-500 dark:text-text-secondary text-sm leading-relaxed mb-5">
-                            Tu aliado de confianza para explorar Cusco y el sur del Perú. Flota moderna, precios justos, servicio excepcional.
+                            Tu aliado de confianza para explorar Piura y el norte del Perú. Flota moderna, precios justos, servicio excepcional.
                         </p>
                         <div className="flex items-center gap-3">
                             <a href="#" aria-label="Instagram" className="w-9 h-9 rounded-lg bg-gray-200 dark:bg-dark-700 border border-gray-300 dark:border-dark-500 flex items-center justify-center text-gray-500 dark:text-text-secondary hover:text-primary hover:border-primary transition-colors duration-200">
@@ -137,7 +138,7 @@ export default function Footer() {
                         © {new Date().getFullYear()} Nevado Rent A Car. Todos los derechos reservados.
                     </p>
                     <p className="text-gray-400 dark:text-text-muted text-sm">
-                        Cusco, Perú 🇵🇪
+                        Piura, Perú 🇵🇪
                     </p>
                 </div>
             </div>

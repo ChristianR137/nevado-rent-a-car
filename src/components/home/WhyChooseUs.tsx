@@ -23,7 +23,7 @@ const reasons = [
         icon: HeartHandshake,
         title: 'Atención Personalizada',
         description:
-            'Un equipo local que conoce Cusco. Te asesoramos sobre las mejores rutas y destinos.',
+            'Un equipo local que conoce Piura. Te asesoramos sobre las mejores rutas y destinos.',
     },
 ];
 
@@ -40,11 +40,10 @@ export default function WhyChooseUs() {
                         <span className="section-label mb-3 block">¿Por qué elegirnos?</span>
                         <h2 className="heading-lg text-gray-900 dark:text-white mb-5">
                             La mejor elección para{' '}
-                            <span className="gradient-text">explorar Cusco</span>
+                            <span className="gradient-text">explorar Piura</span>
                         </h2>
                         <p className="text-gray-500 dark:text-text-secondary text-lg leading-relaxed mb-8">
-                            Más de 5 años brindando experiencias de alquiler de autos únicas en el corazón del Perú.
-                            Conocemos cada ruta, cada curva y cada destino.
+                            Brindando experiencias de alquiler de autos únicas en la ciudad del eterno calor. Conocemos cada ruta, desde la ciudad hasta las mejores playas de nuestra costa.
                         </p>
                         <div className="flex items-center gap-4">
                             <div className="text-center">

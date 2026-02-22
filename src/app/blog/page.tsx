@@ -55,7 +55,7 @@ export default function BlogPage() {
                                         <span className={`badge border text-xs ${categoryColors[blogPosts[0].category] || 'bg-gray-100 text-gray-600 border-gray-200'}`}>
                                             {blogPosts[0].category}
                                         </span>
-                                        <span className="badge-gold text-xs">Destacado</span>
+                                        <span className="badge-primary text-xs">Destacado</span>
                                     </div>
                                     <h2 className="font-serif text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-primary transition-colors">
                                         {blogPosts[0].title}
