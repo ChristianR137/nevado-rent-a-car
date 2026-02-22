@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Search, Calendar, MapPin, ChevronDown } from 'lucide-react';
 import { PICKUP_LOCATIONS } from '@/constants/pickupLocations';
@@ -9,7 +9,7 @@ interface SearchBarProps {
     compact?: boolean;
 }
 
-export default function SearchBar({ compact = false }: SearchBarProps) {
+function SearchBarContent({ compact = false }: SearchBarProps) {
     const router = useRouter();
     const searchParams = useSearchParams();
     const today = new Date().toISOString().split('T')[0];
@@ -128,5 +128,13 @@ export default function SearchBar({ compact = false }: SearchBarProps) {
                 </div>
             </div>
         </form>
+    );
+}
+
+export default function SearchBar(props: SearchBarProps) {
+    return (
+        <Suspense fallback={<div className="h-20 w-full animate-pulse bg-white/5 rounded-2xl md:rounded-full" />}>
+            <SearchBarContent {...props} />
+        </Suspense>
     );
 }

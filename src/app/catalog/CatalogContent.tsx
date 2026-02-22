@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { SlidersHorizontal, X, ChevronDown } from 'lucide-react';
 import VehicleCard from '@/components/catalog/VehicleCard';
@@ -12,7 +12,7 @@ import type { VehicleType, TransmissionType, SearchFilters } from '@/types/vehic
 const PRICE_MIN = 80;
 const PRICE_MAX = 600;
 
-export default function CatalogContent() {
+function CatalogContentInner() {
     const searchParams = useSearchParams();
     const [filtersOpen, setFiltersOpen] = useState(false);
     const [filters, setFilters] = useState<SearchFilters>({
@@ -178,5 +178,13 @@ export default function CatalogContent() {
                 )}
             </div>
         </div>
+    );
+}
+
+export default function CatalogContent() {
+    return (
+        <Suspense fallback={<div className="h-screen w-full flex items-center justify-center animate-pulse bg-white/5" />}>
+            <CatalogContentInner />
+        </Suspense>
     );
 }
