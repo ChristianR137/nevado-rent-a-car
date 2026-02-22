@@ -124,7 +124,7 @@ export default function Footer() {
                             </li>
                             <li className="flex items-start gap-2.5 text-gray-500 dark:text-text-secondary text-sm">
                                 <MapPin size={15} className="mt-0.5 shrink-0 text-primary" />
-                                Av. El Sol 123, Cusco, Perú
+                                Av. Grau 1234, Piura, Perú
                             </li>
                         </ul>
                     </div>

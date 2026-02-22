@@ -4,14 +4,14 @@ import Link from 'next/link';
 
 export const metadata: Metadata = {
     title: 'Sobre Nosotros',
-    description: 'Conoce a Nevado Rent A Car, tu aliado de confianza para explorar Cusco y el sur del Perú desde 2019.',
+    description: 'Conoce a Nevado Rent A Car, tu aliado de confianza para explorar Piura y el norte del Perú desde 2019.',
 };
 
 const values = [
-    { icon: Heart, title: 'Pasión por Cusco', desc: 'Somos cusqueños. Conocemos cada ruta, cada curva y cada destino para brindarte la mejor experiencia.' },
+    { icon: Heart, title: 'Pasión por Piura', desc: 'Somos norteños. Conocemos cada ruta, cada playa y cada destino para brindarte la mejor experiencia.' },
     { icon: Award, title: 'Calidad garantizada', desc: 'Flota impecable, mantenida al detalle. Porque tu seguridad es nuestra prioridad número uno.' },
     { icon: Users, title: 'Equipo humano', desc: 'Un equipo comprometido con hacer de tu viaje una experiencia memorable e irrepetible.' },
-    { icon: MapPin, title: 'Presencia local', desc: 'Ubicados en el corazón de Cusco con cobertura en toda la región y el Valle Sagrado.' },
+    { icon: MapPin, title: 'Presencia local', desc: 'Ubicados en el corazón de Piura con cobertura en toda la región y las playas del norte.' },
 ];
 
 export default function AboutPage() {
@@ -27,9 +27,9 @@ export default function AboutPage() {
                             <span className="gradient-text">increíbles del Perú</span>
                         </h1>
                         <p className="text-gray-500 dark:text-text-secondary text-lg leading-relaxed">
-                            Nevado Rent A Car nació en 2019 de la pasión de un equipo de cusqueños por mostrar la riqueza de su tierra.
+                            Nevado Rent A Car nació en 2019 de la pasión de un equipo de piuranos por mostrar la riqueza de su tierra.
                             Empezamos con 2 vehículos y hoy contamos con una flota moderna de más de 8 autos premium, sirviendo a
-                            viajeros nacionales e internacionales que desean explorar Cusco con libertad y comodidad.
+                            viajeros nacionales e internacionales que desean explorar las playas y rutas del norte con libertad y comodidad.
                         </p>
                     </div>
                 </div>
@@ -72,7 +72,7 @@ export default function AboutPage() {
 
                 {/* CTA */}
                 <div className="card-glass p-10 text-center max-w-2xl mx-auto">
-                    <h2 className="heading-md text-gray-900 dark:text-white mb-4">¿Listo para explorar Cusco?</h2>
+                    <h2 className="heading-md text-gray-900 dark:text-white mb-4">¿Listo para explorar el Norte?</h2>
                     <p className="text-gray-500 dark:text-text-secondary mb-8">Únete a más de 150 viajeros que ya confiaron en nosotros.</p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Link href="/catalog" className="btn-primary">Ver catálogo de autos</Link>

@@ -21,15 +21,15 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Nevado Rent A Car – Alquiler de Autos en Cusco',
+    default: 'Nevado Rent A Car – Alquiler de Autos en Piura',
     template: '%s | Nevado Rent A Car',
   },
   description:
-    'Alquila el auto perfecto para explorar Cusco y el Valle Sagrado. Flota moderna de SUVs, pickups y sedanes con los mejores precios del mercado.',
+    'Alquila el auto perfecto para explorar Piura y las playas del norte. Flota moderna de SUVs, pickups y sedanes con los mejores precios del mercado.',
   keywords: [
-    'alquiler de autos cusco',
-    'rent a car cusco',
-    'alquiler camioneta cusco',
+    'alquiler de autos piura',
+    'rent a car piura',
+    'alquiler camioneta piura',
     'alquiler SUV peru',
     'nevado rent a car',
   ],

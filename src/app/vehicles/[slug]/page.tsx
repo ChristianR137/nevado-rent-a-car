@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     const vehicle = getVehicleBySlug(slug);
     if (!vehicle) return { title: 'Vehículo no encontrado' };
     return {
-        title: `${vehicle.name} ${vehicle.year} – Alquiler en Cusco`,
+        title: `${vehicle.name} ${vehicle.year} – Alquiler en Piura`,
         description: vehicle.description,
     };
 }

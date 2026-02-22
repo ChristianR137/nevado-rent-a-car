@@ -13,71 +13,63 @@ export interface BlogPost {
 export const blogPosts: BlogPost[] = [
     {
         id: '1',
-        slug: 'mejores-rutas-cusco-en-auto',
-        title: 'Las 5 mejores rutas para explorar Cusco en auto',
-        excerpt: 'Descubre los caminos más impresionantes del sur del Perú, desde el Valle Sagrado hasta las lagunas de Humantay, sin depender de tours masivos.',
+        slug: 'mejores-rutas-piura-norte-en-auto',
+        title: 'Las 5 mejores rutas para explorar Piura en auto',
+        excerpt: 'Descubre los caminos más impresionantes del norte del Perú, desde las cálidas playas de Máncora hasta la historia de Catacaos.',
         category: 'Rutas & Destinos',
         date: '2026-02-10',
         readTime: 6,
         coverEmoji: '🗺️',
         content: `
-## Por qué manejar en Cusco es la mejor decisión
+## Por qué manejar en el Norte es la mejor decisión
 
-Alquilar un auto en Cusco te da una libertad que ningún tour organizado puede igualar. Puedes detenerte cuando quieras, explorar a tu ritmo y llegar a lugares donde los buses simplemente no van.
+Alquilar un auto en Piura te da una libertad increíble. Puedes detenerte en caletas de pescadores, explorar playas escondidas a tu ritmo y disfrutar de la mejor gastronomía en lugares donde los buses simplemente no van.
 
-## Ruta 1: Valle Sagrado de los Incas
+## Ruta 1: Circuito de Playas del Norte (Colán a Máncora)
 
-**Distancia:** ~80 km desde Cusco  
-**Duración estimada:** 1-2 días
-
-El Valle Sagrado es probablemente la ruta más popular, y con razón. Partiendo desde Cusco hacia Pisac, pasarás por mercados artesanales, ruinas incas y paisajes andinos de postal. Continúa por Urubamba hasta Ollantaytambo, la ciudad viva más antigua de América.
-
-**Paradas imperdibles:**
-- Pisac: mercado y ruinas
-- Chinchero: textiles y vista al nevado
-- Moray: terrazas circulares incas
-- Maras: salinas de colores imposibles
-
-## Ruta 2: Humantay y Soraypampa
-
-**Distancia:** ~130 km desde Cusco  
-**Duración estimada:** 1 día
-
-La Laguna Humantay es uno de los destinos más fotogénicos del sur peruano. La ruta en auto hasta Soraypampa (punto de inicio del trekking) es perfectamente accesible con una camioneta 4x4 o SUV.
-
-## Ruta 3: Lago Titicaca vía Ruta del Sol
-
-**Distancia:** ~380 km desde Cusco  
+**Distancia:** ~200 km desde Piura  
 **Duración estimada:** 2-3 días
 
-La Ruta del Sol conecta Cusco con Puno a través de Andahuaylillas (la "Capilla Sixtina de América"), Raqchi y La Raya. Un viaje que combina historia viva con paisajes altiplánicos únicos.
+La Panamericana Norte te lleva a través de un rosario de playas paradisíacas. Empieza visitando la histórica iglesia de San Lucas de Colán, continúa por las hermosas aguas de Los Órganos para avistar tortugas y ballenas, y termina tu relajación en Máncora o Punta Sal.
 
-## Ruta 4: Abancay y los cañones de Apurímac
+**Paradas imperdibles:**
+- Colán: balneario tranquilo y puestas de sol únicas
+- Cabo Blanco: meca del surf histórico
+- Los Órganos: nado con tortugas marinas
+- Máncora: vida y playa
 
-**Distancia:** ~190 km desde Cusco  
-**Duración estimada:** 1-2 días
+## Ruta 2: La Ruta Artesanal y Gastronómica (Catacaos - Chulucanas)
 
-Para los más aventureros, el camino a Abancay cruza el impresionante Cañón del Apurímac. Se recomienda vehículo con buena tracción y conductores experimentados.
+**Distancia:** ~60 km desde Piura  
+**Duración estimada:** 1 día
 
-## Ruta 5: Moray → Maras → Chinchero
+Corta pero llena de cultura. Visita la calle Comercio en Catacaos para admirar la filigrana de oro y plata, degusta un buen ceviche de conchas negras, y luego maneja hasta Chulucanas para conocer su famosa cerámica.
 
-**Distancia:** ~50 km desde Cusco  
-**Duración estimada:** Medio día
+## Ruta 3: Sechura y los Manglares de San Pedro
 
-El circuito perfecto para un día. Las terrazas experimentales de Moray y las salinas rosadas de Maras son dos de las maravillas menos apreciadas de la región. Termina en Chinchero antes del atardecer.
+**Distancia:** ~65 km desde Piura  
+**Duración estimada:** 1 día
 
-## Consejos de manejo en altitud
+Una ruta fascinante que te lleva al sur de la ciudad hacia el desierto más extenso del Perú, la Duna de Médano Blanco, y el humedal de los Manglares de San Pedro, un espectáculo natural.
 
-- **Aclimatación previa:** Conduce solo después de 24-48h en Cusco.
-- **Combustible:** Llena el tanque en Cusco antes de salir; en ruta las griferas son escasas.
-- **Seguro:** Nuestros vehículos incluyen seguro básico; opciones ampliadas disponibles.
-- **4x4 vs Sedán:** Para rutas fuera de asfalto (Humantay, zonas rurales) siempre elige 4x4.
+## Ruta 4: Ayabaca y el Señor Cautivo
+
+**Distancia:** ~210 km desde Piura  
+**Duración estimada:** 2 días
+
+Para los más aventureros, el camino de ascenso hacia la sierra piurana para visitar Ayabaca. Se recomienda vehículo SUV para mayor confort en la ruta.
+
+## Consejos de manejo en la costa norte
+
+- **Calor y Sol:** El aire acondicionado es tu mejor amigo. No olvides agua y protector solar.
+- **Evita conducir de noche:** Algunas rutas interprovinciales no tienen buena iluminación ni señalización reflectante óptima.
+- **Arena:** Si te acercas a las playas, ten cuidado de no atascarte en la arena suelta sin conocer la zona.
         `,
     },
     {
         id: '2',
-        slug: 'guia-alquilar-auto-cusco',
-        title: 'Guía completa para alquilar un auto en Cusco sin sorpresas',
+        slug: 'guia-alquilar-auto-piura',
+        title: 'Guía completa para alquilar un auto en Piura sin sorpresas',
         excerpt: 'Todo lo que necesitas saber antes de firmar un contrato de alquiler: documentos, seguros, tipos de vehículo y preguntas clave que debes hacer.',
         category: 'Consejos',
         date: '2026-02-03',
@@ -92,12 +84,11 @@ Alquilar un auto puede ser la mejor o la peor decisión de tu viaje, dependiendo
 
 **Para clientes nacionales:**
 - DNI vigente
-- Licencia de conducir vigente (categoría B2 o superior para 4x4)
+- Licencia de conducir vigente (categoría A-I o superior)
 
 **Para turistas extranjeros:**
 - Pasaporte vigente
 - Licencia de conducir de su país (válida en Perú por reciprocidad)
-- Licencia Internacional de Conducir (recomendada pero no siempre exigida)
 
 ## Tipos de seguro
 
@@ -114,26 +105,25 @@ La opción más completa. Sin deducible, sin preocupaciones.
 
 | Situación | Vehículo recomendado |
 |-----------|---------------------|
-| Ciudad + carretera principal | Sedán económico |
-| Valle Sagrado, Titicaca | SUV |
-| Zonas rurales, trochas | 4x4 doble tracción |
-| Grupo familiar | Camioneta 7 pasajeros |
+| Moverse por la ciudad | Sedán económico |
+| Viaje a las playas (Máncora, Zorritos) | SUV / Crossover |
+| Aventura rural o sierra piurana | 4x4 o Pic-up |
+| Grupo grande de amigos o familia | SUV de 3 filas |
 
 ## Preguntas que debes hacer antes de firmar
 
 1. ¿El seguro cubre daños en llanta y vidrios?
 2. ¿Hay cargos por kilómetro adicional?
 3. ¿Cuál es el procedimiento ante un accidente?
-4. ¿Se puede dejar el auto en otra ciudad?
+4. ¿Puedo devolver el auto en el aeropuerto de Piura?
 5. ¿El precio incluye IGV (impuesto)?
 
 ## Inspección del vehículo
 
 Nunca firmes sin revisar:
 - Fotos del estado exterior e interior
-- Nivel de combustible al recoger
-- Documentos del vehículo (SOAT, revisión técnica)
-- Funcionamiento de luces, frenos y AC
+- Nivel de combustible y estado de las llantas
+- Funcionamiento del aire acondicionado (esencial en Piura)
 
 En Nevado Rent A Car realizamos una inspección conjunta documentada con fotos antes de cada entrega.
         `,
@@ -192,139 +182,101 @@ Con Nevado Rent A Car, el proceso es sencillo:
     },
     {
         id: '4',
-        slug: 'cusco-temporada-seca-viaje',
-        title: 'Cuándo visitar Cusco: la guía definitiva por temporadas',
-        excerpt: 'Temporada seca vs lluviosa, festivales, precios y la mejor época para cada tipo de viajero. Todo lo que necesitas para planificar tu visita perfecta.',
+        slug: 'piura-clima-verano-vs-invierno',
+        title: 'Cuándo visitar las playas de Piura: verano vs invierno',
+        excerpt: 'Sol, mar y arena todo el año. Analizamos las diferencias entre las estaciones para que planifiques tu roadtrip playero perfecto.',
         category: 'Viajes',
         date: '2026-01-15',
         readTime: 7,
         coverEmoji: '☀️',
         content: `
-## Las dos caras de Cusco
+## El "Eterno Sol" de Piura
 
-Cusco es una ciudad que se transforma radicalmente según la época del año. Conocer las diferencias te ayudará a elegir el momento perfecto para tu visita.
+El eslogan de la región no miente: en Piura hay sol todo el año. Sin embargo, existen diferencias entre visitar el norte en pleno verano frente al llamado invierno costero.
 
-## Temporada Seca (Mayo – Octubre)
+## Temporada de Verano (Diciembre – Abril)
 
-**La favorita de los turistas**
+**El pico del calor y la fiesta**
 
-Los meses de mayo a octubre son los más populares, especialmente junio y julio. El cielo es despejado casi todos los días, las temperaturas son agradables durante el día (15-20°C) y las noches son frías pero manejables.
-
-**Ventajas:**
-- Cielos azules perfectos para fotografía
-- Carreteras en mejor estado
-- Ideal para trekking y actividades al aire libre
-- Festivales importantes: Inti Raymi (junio), Virgen del Carmen (julio)
-
-**Desventajas:**
-- Precios más altos (alta temporada)
-- Mayor afluencia de turistas
-- Algunos atractivos congestionados
-
-## Temporada de Lluvias (Noviembre – Abril)
-
-**La temporada de los valles verdes**
-
-Las lluvias caen principalmente en las tardes y noches, dejando las mañanas libres para explorar. El paisaje se transforma: todo es verde intenso y los ríos bajan cargados.
+Es la temporada alta por excelencia. El sol quema con intensidad, el agua del mar está más cálida y los balnearios bullen de vida, fiestas y ambiente festivo, especialmente en la zona de Máncora y Punta Sal.
 
 **Ventajas:**
-- Precios más bajos (hasta 40% menos)
-- Menos turistas, experiencia más auténtica
-- Paisajes espectaculares de vegetación exuberante
-- Mejor para quienes buscan tranquilidad
+- Aguas del mar más cálidas, perfectas para nadar largas horas.
+- Máximo ambiente festivo y vida nocturna.
+- Todos los servicios turísticos operan al 100%.
 
 **Desventajas:**
-- Algunas rutas pueden cortarse por huaycos
-- La Inca Trail cierra en febrero por mantenimiento
-- Lluvias por las tardes
+- Mayor calor (necesitarás el aire acondicionado de tu auto en niveles altos).
+- Tráfico pesado en las rutas hacia las playas principales en fechas de festejo.
+- Posibilidad de algunas lluvias intensas (El Niño).
+
+## Temporada de Invierno (Mayo – Noviembre)
+
+**Tranquilidad, brisa y descanso**
+
+A pesar de llamarse invierno, las temperaturas se mantienen agradables (alrededor de 24°C a 28°C), con mañanas frescas y sol radiante a mediodía. Es la temporada perfecta para el avistamiento de ballenas.
+
+**Ventajas:**
+- La mejor época para el avistamiento de ballenas jorobadas (Julio-Octubre).
+- Playas más tranquilas, carreteras despejadas para manejar sin estrés.
+- Precios más bajos en alojamientos a lo largo de la costa.
+- Clima más templado y soportable durante el día.
+
+**Desventajas:**
+- El agua del mar puede ser un poco más fresca, y se levantan vientos fuertes en la tarde.
 
 ## Recomendación de vehículo por temporada
 
 | Temporada | Vehículo ideal |
 |-----------|---------------|
-| Seca (Mayo-Oct) | Cualquier categoría |
-| Lluviosa (Nov-Abr) | 4x4 o SUV recomendado |
-| Carnaval (Feb) | SUV o 4x4 obligatorio |
-
-## Festivales que no te puedes perder
-
-**Junio:**
-- **Inti Raymi** (24 jun): La fiesta del Sol, el festival más importante del Cusco incaico.
-
-**Julio:**
-- **Virgen del Carmen** (16 jul): Coloridos bailes en Paucartambo.
-
-**Agosto:**
-- **Huarachicoy** (agosto): Rito de iniciación inca recreado en Sacsayhuamán.
+| Verano | Cualquier vehículo con buen A/C |
+| Temporada de ballenas | SUV para grupos familiares |
+| Visitas a playas vírgenes | Crossover o 4x4 (mayor altura al piso) |
         `,
     },
     {
         id: '5',
-        slug: 'tips-conducir-altura-andes',
-        title: '7 tips esenciales para conducir en los Andes peruanos',
-        excerpt: 'La altitud, las carreteras serpenteantes y los cambios bruscos de clima hacen de los Andes un desafío único. Estos consejos pueden salvar tu viaje.',
+        slug: 'tips-conducir-costa-norte',
+        title: '5 tips esenciales para conducir por la Panamericana Norte',
+        excerpt: 'Largos tramos rectos, clima cálido y arena voladora hacen de la conducción en el norte del Perú una experiencia particular.',
         category: 'Consejos',
         date: '2026-01-07',
         readTime: 5,
-        coverEmoji: '⛰️',
+        coverEmoji: '🚗',
         content: `
-## Conducir en altitudes extremas
+## Manejar en el cálido norte
 
-Manejar a 3,400 metros sobre el nivel del mar (la altura de Cusco) es una experiencia muy diferente a hacerlo al nivel del mar. Estos tips son esenciales para tu seguridad.
+Conducir por la costa norte del Perú, especialmente la ruta entre Piura y Tumbes, es un placer gracias a sus atractivas playas y gastronomía, pero exige tomar en cuenta algunas precauciones para un roadtrip perfecto.
 
-## 1. Aclimatación obligatoria
+## 1. Protégete del calor intenso
 
-No manejes el primer día. Tu cuerpo necesita tiempo para adaptarse a la menor concentración de oxígeno. Dedica las primeras 24-48 horas a descansar, hidratarte y evitar esfuerzos físicos intensos.
+El norte peruano es famoso por sus altas temperaturas. 
+- Verifica siempre el funcionamiento del aire acondicionado antes de aceptar el auto.
+- Utiliza protector solar en los brazos mientras conduces.
+- Mantén botellas de agua en la cabina; la deshidratación al volante causa fatiga prematura.
 
-**Síntomas del mal de altura a vigilar:**
-- Dolor de cabeza persistente
-- Náuseas o mareos
-- Dificultad para respirar en reposo
-- Fatiga extrema
+## 2. Precaución con el "Hipnotismo de Autopista"
 
-Si tienes síntomas graves, descende de altitud inmediatamente.
+La carretera Panamericana Norte en Piura incluye varios tramos de larga recta (como el camino hacia Paita o Talara). Esto, combinado con el calor y el paisaje monótono del desierto, puede causar somnolencia o una falsa sensación de velocidad. **Detente a estirar las piernas** o toma café si te sientes aletargado.
 
-## 2. El motor también sufre la altitud
+## 3. Cuidado en desvíos y "trochas" playeras
 
-Los vehículos pierden potencia en altitud (aproximadamente un 3% por cada 300 metros). Esto significa que las pendientes se sienten más pronunciadas y los adelantamientos requieren más distancia. Sé conservador.
+Muchas de las playas más hermosas e íntimas de Piura (como Cabo Blanco o Lobitos) requieren desviarse de la pista principal o recorrer caminos de herradura no asfaltados y a veces arenosos. 
+- Disminuye la velocidad.
+- Si ves áreas con mucha arena suelta, evalúa si tu auto puede cruzar, idealmente un SUV o camioneta. No arriesgues un auto sedán bajito.
 
-## 3. Manejo en curvas y pendientes
+## 4. Ojo con el ganado en la vía
 
-Las carreteras andinas son famosas por sus curvas en "U" (llamadas "suizas"). Reglas básicas:
-- Toca el claxon antes de curvas ciegas
-- Mantén la derecha en absoluto
-- En descenso, usa el motor (freno-motor) en lugar de los frenos continuamente
-- Nunca adelantes en curvas, aunque parezca seguro
+Especialmente al atardecer y cerca de tramos agrícolas en las afueras de Piura o en las subidas a Sechura/Catacaos, es común que crucen vacas o cabras de improvisto. Presta atención y mantén una velocidad moderada en estas áreas rurales.
 
-## 4. Lluvia y neblina
+## 5. Cuidado en el crepúsculo
 
-En temporada de lluvias, la visibilidad puede bajar a metros. Si encuentras neblina densa:
-- Reduce velocidad drásticamente
-- Pon las luces de cruce (no las altas)
-- Si no ves nada, detente en zona segura y espera
-
-## 5. Combustible
-
-Fuera de Cusco, los grifos escasean. **Llena el tanque siempre al 100% antes de salir** hacia rutas rurales. Lleva un galón de reserva si planeas ruta fuera de lo establecido.
-
-## 6. Equipamiento de emergencia
-
-En nuestra flota, cada vehículo incluye:
-- Gata y llave de ruedas
-- Triángulos de seguridad
-- Extintor
-- Botiquín básico
-
-Revisa que todo esté presente antes de partir.
-
-## 7. Conexión y señal
-
-La señal de celular es errática en zonas rurales andinas. Descarga los mapas offline de Google Maps o Maps.me antes de salir. Comparte tu ruta con alguien de confianza.
+Conducir de noche por ciertas áreas carentes de iluminación puede ser agotador por los faros de los buses y tráilers que vienen en sentido contrario; sus luces "altas" pueden cegarte temporalmente. 
+Procura iniciar tus regresos a tu hotel o base en la ciudad de Piura antes que caiga la noche completamente.
 
 ## Número de emergencias
 
-- **Policía de Tránsito:** 105
-- **Bomberos:** 116
+- **Policía de Carreteras:** 110
 - **Nevado Rent A Car (asistencia 24h):** +51 987 654 321
         `,
     },

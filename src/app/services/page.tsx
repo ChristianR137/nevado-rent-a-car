@@ -25,7 +25,7 @@ export default function ServicesPage() {
                         Personaliza tu <span className="gradient-text">experiencia</span>
                     </h1>
                     <p className="text-gray-500 dark:text-text-secondary text-lg leading-relaxed">
-                        Agrega servicios a medida para que tu viaje por Cusco sea exactamente como lo soñaste.
+                        Agrega servicios a medida para que tu viaje en Piura sea exactamente como lo soñaste.
                         Cada servicio puede agregarse al momento de reservar.
                     </p>
                 </div>

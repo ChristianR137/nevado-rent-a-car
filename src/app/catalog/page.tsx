@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
     title: 'Catálogo de Vehículos',
-    description: 'Explora nuestra flota de SUVs, pickups, sedanes y económicos disponibles para alquiler en Cusco.',
+    description: 'Explora nuestra flota de SUVs, pickups, sedanes y económicos disponibles para alquiler en Piura.',
 };
 
 export default function CatalogPage() {

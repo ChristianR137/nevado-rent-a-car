@@ -5,7 +5,7 @@ import { Calendar, Clock, ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
     title: 'Blog – Nevado Rent A Car',
-    description: 'Tips de viaje, rutas en Cusco, consejos de alquiler y guías para explorar el sur del Perú como un experto.',
+    description: 'Tips de viaje, rutas en el Norte, consejos de alquiler y guías para explorar Piura como un experto.',
 };
 
 const categoryColors: Record<string, string> = {
@@ -32,7 +32,7 @@ export default function BlogPage() {
                         <span className="gradient-text">consejos de viaje</span>
                     </h1>
                     <p className="text-gray-500 dark:text-text-secondary text-lg leading-relaxed">
-                        Todo lo que necesitas saber para explorar Cusco, Piura y el sur del Perú con total libertad y seguridad.
+                        Todo lo que necesitas saber para explorar Piura, Tumbes y el norte del Perú con total libertad y seguridad.
                     </p>
                 </div>
             </div>

@@ -5,7 +5,7 @@ const services = [
     {
         icon: UserCheck,
         title: 'Conductor Privado',
-        description: 'Chofer profesional con experiencia en rutas de montaña y destinos turísticos de Cusco.',
+        description: 'Chofer profesional con experiencia en rutas del norte y destinos turísticos de Piura y alrededores.',
         price: 'S/ 120/día',
     },
     {

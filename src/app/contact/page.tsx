@@ -10,7 +10,7 @@ import { generateWhatsAppLink } from '@/lib/utils/generateWhatsAppLink';
 const contactInfo = [
     { icon: Phone, label: 'Teléfono / WhatsApp', value: '+51 987 654 321', href: 'tel:+51987654321' },
     { icon: Mail, label: 'Correo electrónico', value: 'reservas@nevadorentacar.com', href: 'mailto:reservas@nevadorentacar.com' },
-    { icon: MapPin, label: 'Dirección', value: 'Av. El Sol 123, Cusco, Perú', href: '#' },
+    { icon: MapPin, label: 'Dirección', value: 'Av. Grau 1234, Piura, Perú', href: '#' },
 ];
 
 export default function ContactPage() {
