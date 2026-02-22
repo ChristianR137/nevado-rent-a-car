@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -13,7 +13,7 @@ import { formatCurrency } from '@/lib/utils/formatCurrency';
 import { bookingSchema, type BookingFormSchema } from '@/lib/validations/bookingSchema';
 import { getVehicleBySlug } from '@/lib/data/vehicles';
 
-export default function BookingPage() {
+function BookingFormContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const {
@@ -276,5 +276,17 @@ export default function BookingPage() {
                 </form>
             </div>
         </div>
+    );
+}
+
+export default function BookingPage() {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen bg-white dark:bg-dark pt-32 flex justify-center items-start">
+                <span className="animate-spin w-8 h-8 border-4 border-gray-200 border-t-primary rounded-full" />
+            </div>
+        }>
+            <BookingFormContent />
+        </Suspense>
     );
 }
