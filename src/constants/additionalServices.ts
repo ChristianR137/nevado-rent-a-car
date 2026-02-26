@@ -8,6 +8,7 @@ export const ADDITIONAL_SERVICES: AdditionalService[] = [
         pricePerDay: 120,
         icon: 'UserCheck',
         isPopular: true,
+        isIncluded: false,
     },
     {
         id: 'seguro-adicional',
@@ -16,6 +17,7 @@ export const ADDITIONAL_SERVICES: AdditionalService[] = [
         pricePerDay: 35,
         icon: 'Shield',
         isPopular: true,
+        isIncluded: false,
     },
     {
         id: 'asistencia-24-7',
@@ -24,6 +26,7 @@ export const ADDITIONAL_SERVICES: AdditionalService[] = [
         pricePerDay: 25,
         icon: 'Headphones',
         isPopular: true,
+        isIncluded: false,
     },
     {
         id: 'entrega-aeropuerto',
@@ -32,6 +35,7 @@ export const ADDITIONAL_SERVICES: AdditionalService[] = [
         pricePerDay: 50,
         icon: 'Plane',
         isPopular: false,
+        isIncluded: false,
     },
     {
         id: 'gps-navegador',
@@ -40,6 +44,7 @@ export const ADDITIONAL_SERVICES: AdditionalService[] = [
         pricePerDay: 15,
         icon: 'MapPin',
         isPopular: false,
+        isIncluded: false,
     },
     {
         id: 'silla-bebe',
@@ -48,5 +53,6 @@ export const ADDITIONAL_SERVICES: AdditionalService[] = [
         pricePerDay: 20,
         icon: 'Baby',
         isPopular: false,
+        isIncluded: false,
     },
 ];

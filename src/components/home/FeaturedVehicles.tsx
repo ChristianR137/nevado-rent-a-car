@@ -3,9 +3,10 @@ import { ArrowRight } from 'lucide-react';
 import { getFeaturedVehicles } from '@/lib/data/vehicles';
 import VehicleCard from '@/components/catalog/VehicleCard';
 
-export default function FeaturedVehicles() {
+export default async function FeaturedVehicles() {
     // Take 3 popular vehicles for a complete row (could be 6 for two rows)
-    const vehicles = getFeaturedVehicles().slice(0, 3);
+    const featuredList = await getFeaturedVehicles();
+    const vehicles = featuredList.slice(0, 3);
 
     return (
         <section className="section-padding bg-gray-50 dark:bg-dark">

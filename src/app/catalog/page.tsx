@@ -7,7 +7,10 @@ export const metadata: Metadata = {
     description: 'Explora nuestra flota de SUVs, pickups, sedanes y económicos disponibles para alquiler en Piura.',
 };
 
-export default function CatalogPage() {
+import { getVehicles } from '@/lib/data/vehicles';
+
+export default async function CatalogPage() {
+    const initialVehicles = await getVehicles();
     return (
         <Suspense
             fallback={
@@ -23,7 +26,7 @@ export default function CatalogPage() {
                 </div>
             }
         >
-            <CatalogContent />
+            <CatalogContent initialVehicles={initialVehicles} />
         </Suspense>
     );
 }

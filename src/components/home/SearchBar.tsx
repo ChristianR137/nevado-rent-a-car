@@ -18,6 +18,8 @@ function SearchBarContent({ compact = false }: SearchBarProps) {
     const [form, setForm] = useState({
         pickupLocation: searchParams.get('pickupLocation') || '',
         pickupDetail: '',
+        dropoffLocation: searchParams.get('dropoffLocation') || '',
+        dropoffDetail: '',
         startDate: searchParams.get('startDate') || today,
         endDate: searchParams.get('endDate') || tomorrow,
     });
@@ -33,7 +35,12 @@ function SearchBarContent({ compact = false }: SearchBarProps) {
             ? `Otro: ${form.pickupDetail}`
             : form.pickupLocation;
 
+        const finalDropoff = form.dropoffLocation === 'otro' && form.dropoffDetail
+            ? `Otro: ${form.dropoffDetail}`
+            : form.dropoffLocation;
+
         if (finalLocation) params.set('pickupLocation', finalLocation);
+        if (finalDropoff) params.set('dropoffLocation', finalDropoff);
         if (form.startDate) params.set('startDate', form.startDate);
         if (form.endDate) params.set('endDate', form.endDate);
         router.push(`/catalog?${params.toString()}`);

@@ -58,7 +58,7 @@ export default function ServicesOverview() {
                                 <p className="text-gray-500 dark:text-text-secondary text-sm mb-4 leading-relaxed">
                                     {svc.description}
                                 </p>
-                                <span className="badge-primary text-xs">{svc.price}</span>
+
                             </div>
                         );
                     })}

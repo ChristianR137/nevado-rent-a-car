@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Users, Fuel, Settings } from 'lucide-react';
 import { Vehicle } from '@/types/vehicle';
 import { formatCurrency } from '@/lib/utils/formatCurrency';
@@ -21,10 +22,19 @@ export default function VehicleCard({ vehicle }: VehicleCardProps) {
             <article className="card-glass hover-card overflow-hidden h-full flex flex-col">
                 {/* Image Container */}
                 <div className="relative h-52 bg-gray-100 dark:bg-dark-700 overflow-hidden">
-                    {/* Placeholder gradient image */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-100 dark:from-dark-600 dark:to-dark-800 flex items-center justify-center">
-                        <div className="text-6xl opacity-20">🚗</div>
-                    </div>
+                    {vehicle.images && vehicle.images[0] && vehicle.images[0].startsWith('http') ? (
+                        <Image
+                            src={vehicle.images[0]}
+                            alt={vehicle.name}
+                            fill
+                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                    ) : (
+                        <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-100 dark:from-dark-600 dark:to-dark-800 flex items-center justify-center">
+                            <div className="text-6xl opacity-20">🚗</div>
+                        </div>
+                    )}
 
                     {/* Overlay on hover */}
                     <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -88,15 +98,9 @@ export default function VehicleCard({ vehicle }: VehicleCardProps) {
                         </div>
                     </div>
 
-                    {/* Price & CTA */}
-                    <div className="flex items-center justify-between mt-auto">
-                        <div>
-                            <span className="text-2xl font-bold text-gray-900 dark:text-white">
-                                {formatCurrency(vehicle.pricePerDay)}
-                            </span>
-                            <span className="text-gray-400 dark:text-text-secondary text-sm">/día</span>
-                        </div>
-                        <span className="btn-outline text-sm px-4 py-2 group-hover:bg-primary group-hover:text-white transition-all duration-200">
+                    {/* CTA */}
+                    <div className="flex items-center justify-center mt-auto">
+                        <span className="btn-outline w-full text-center text-sm px-4 py-2.5 group-hover:bg-primary group-hover:text-white transition-all duration-200">
                             Ver detalles
                         </span>
                     </div>

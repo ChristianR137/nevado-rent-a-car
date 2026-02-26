@@ -1,14 +1,25 @@
 import Link from 'next/link';
-import { ChevronRight, Gauge, ShieldCheck, Thermometer } from 'lucide-react';
+import * as LucideIcons from 'lucide-react';
 
-export default function ShowcaseSection() {
+const DynamicIcon = ({ name, ...props }: { name: string;[key: string]: any }) => {
+    const Icon = (LucideIcons as any)[name] || LucideIcons.HelpCircle;
+    return <Icon {...props} />;
+};
+import { createClient } from '@/utils/supabase/server';
+
+export default async function ShowcaseSection() {
+    const supabase = await createClient();
+    const { data: showcase } = await supabase.from('showcase_settings').select('*').single();
+
+    if (!showcase) return null;
+
     return (
         <section className="relative h-screen w-full flex items-center overflow-hidden bg-dark">
             {/* 1. Full-Bleed Background Image Array */}
             <div
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-[40s] ease-linear hover:scale-110"
                 style={{
-                    backgroundImage: "url('/showcase-bg.png')",
+                    backgroundImage: `url('${showcase.image_url}')`,
                 }}
             />
 
@@ -24,47 +35,47 @@ export default function ShowcaseSection() {
                     {/* Badge */}
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-bold tracking-widest uppercase mb-6 shadow-xl">
                         <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-                        Serie Premium
+                        {showcase.badge_text}
                     </div>
 
                     {/* Massive Elegant Typography */}
-                    <h2 className="text-6xl md:text-8xl lg:text-[10rem] font-black text-white leading-[0.85] tracking-tighter mb-6 drop-shadow-2xl">
-                        TOYOTA <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-primary">FORTUNER</span>
+                    <h2 className="text-6xl md:text-8xl lg:text-[10rem] font-black text-white leading-[0.85] tracking-tighter mb-6 drop-shadow-2xl uppercase">
+                        {showcase.title_line1} <br />
+                        <span className="text-transparent bg-clip-text bg-gradient-primary">{showcase.title_line2}</span>
                     </h2>
 
                     {/* Sophisticated Description */}
                     <p className="text-lg md:text-xl text-text-secondary md:text-white/80 max-w-2xl font-light leading-relaxed mb-10 drop-shadow-md border-l-2 border-primary pl-4">
-                        Conquista cada rincón del norte peruano. Un vehículo imponente diseñado para ofrecer lujo en el interior y agresividad todoterreno en el exterior.
+                        {showcase.description}
                     </p>
 
                     {/* Glassmorphic Specs Bar */}
                     <div className="flex flex-wrap items-center gap-4 md:gap-8 mb-10 bg-dark-800/40 backdrop-blur-md border border-white/10 p-4 md:p-6 rounded-2xl w-fit shadow-2xl">
                         <div className="flex items-center gap-3">
-                            <Gauge className="text-primary" size={24} />
+                            <DynamicIcon name={showcase.spec1_icon || 'Gauge'} className="text-primary" size={24} />
                             <div>
-                                <p className="text-white font-bold text-sm md:text-base leading-none mb-1">201 CV</p>
-                                <p className="text-text-muted text-xs uppercase tracking-wider">Potencia</p>
+                                <p className="text-white font-bold text-sm md:text-base leading-none mb-1">{showcase.spec1_value}</p>
+                                <p className="text-text-muted text-xs uppercase tracking-wider">{showcase.spec1_label}</p>
                             </div>
                         </div>
 
                         <div className="hidden sm:block w-px h-10 bg-white/10" />
 
                         <div className="flex items-center gap-3">
-                            <ShieldCheck className="text-primary" size={24} />
+                            <DynamicIcon name={showcase.spec2_icon || 'ShieldCheck'} className="text-primary" size={24} />
                             <div>
-                                <p className="text-white font-bold text-sm md:text-base leading-none mb-1">4x4 Automático</p>
-                                <p className="text-text-muted text-xs uppercase tracking-wider">Tracción</p>
+                                <p className="text-white font-bold text-sm md:text-base leading-none mb-1">{showcase.spec2_value}</p>
+                                <p className="text-text-muted text-xs uppercase tracking-wider">{showcase.spec2_label}</p>
                             </div>
                         </div>
 
                         <div className="hidden sm:block w-px h-10 bg-white/10" />
 
                         <div className="flex items-center gap-3">
-                            <Thermometer className="text-primary" size={24} />
+                            <DynamicIcon name={showcase.spec3_icon || 'Thermometer'} className="text-primary" size={24} />
                             <div>
-                                <p className="text-white font-bold text-sm md:text-base leading-none mb-1">7 Asientos</p>
-                                <p className="text-text-muted text-xs uppercase tracking-wider">Capacidad</p>
+                                <p className="text-white font-bold text-sm md:text-base leading-none mb-1">{showcase.spec3_value}</p>
+                                <p className="text-text-muted text-xs uppercase tracking-wider">{showcase.spec3_label}</p>
                             </div>
                         </div>
                     </div>
@@ -72,17 +83,17 @@ export default function ShowcaseSection() {
                     {/* Call to Actions */}
                     <div className="flex flex-col sm:flex-row gap-4 items-center sm:items-start w-full sm:w-auto">
                         <Link
-                            href="/booking?vehicle=toyota-fortuner"
+                            href={`/booking?vehicle=${showcase.vehicle_slug}`}
                             className="w-full sm:w-auto inline-flex items-center justify-between gap-4 bg-primary hover:bg-white text-white hover:text-dark px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow-primary group"
                         >
                             Reservar Vehículo
                             <div className="bg-dark/10 p-1 rounded-md group-hover:bg-dark-800/10 group-hover:translate-x-1 transition-all">
-                                <ChevronRight size={20} />
+                                <LucideIcons.ChevronRight size={20} />
                             </div>
                         </Link>
 
                         <Link
-                            href="/vehicles/toyota-fortuner"
+                            href={`/vehicles/${showcase.vehicle_slug}`}
                             className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-xl text-white font-medium bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/30 backdrop-blur-sm transition-all duration-300"
                         >
                             Detalles Completos

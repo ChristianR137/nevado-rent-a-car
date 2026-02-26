@@ -22,6 +22,8 @@ export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
     const pathname = usePathname();
 
+    if (pathname.startsWith('/admin')) return null;
+
     useEffect(() => {
         const handleScroll = () => setIsScrolled(window.scrollY > 20);
         window.addEventListener('scroll', handleScroll, { passive: true });

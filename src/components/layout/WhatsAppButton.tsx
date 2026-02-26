@@ -1,10 +1,14 @@
 'use client';
 
 import { MessageCircle } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 import { generateWhatsAppLink } from '@/lib/utils/generateWhatsAppLink';
 
 export default function WhatsAppButton() {
+    const pathname = usePathname();
     const link = generateWhatsAppLink();
+
+    if (pathname.startsWith('/admin')) return null;
 
     return (
         <a

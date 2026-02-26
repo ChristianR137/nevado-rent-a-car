@@ -4,15 +4,17 @@ import { useState, useMemo, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { SlidersHorizontal, X, ChevronDown } from 'lucide-react';
 import VehicleCard from '@/components/catalog/VehicleCard';
-import { vehicles } from '@/lib/data/vehicles';
 import { VEHICLE_TYPES, TRANSMISSION_TYPES } from '@/constants/vehicleTypes';
 import { PICKUP_LOCATIONS } from '@/constants/pickupLocations';
-import type { VehicleType, TransmissionType, SearchFilters } from '@/types/vehicle';
+import type { Vehicle, VehicleType, TransmissionType, SearchFilters } from '@/types/vehicle';
+import { useBookingStore } from '@/store/bookingStore';
+import { useEffect } from 'react';
 
-const PRICE_MIN = 80;
-const PRICE_MAX = 600;
+interface CatalogContentProps {
+    initialVehicles: Vehicle[];
+}
 
-function CatalogContentInner() {
+function CatalogContentInner({ initialVehicles }: CatalogContentProps) {
     const searchParams = useSearchParams();
     const [filtersOpen, setFiltersOpen] = useState(false);
     const [filters, setFilters] = useState<SearchFilters>({
@@ -21,15 +23,34 @@ function CatalogContentInner() {
         pickupLocation: searchParams.get('pickupLocation'),
         vehicleType: null,
         transmission: null,
-        minPrice: PRICE_MIN,
-        maxPrice: PRICE_MAX,
     });
 
+    const setDatesState = useBookingStore(state => state.setDates);
+    const setPickupLocationState = useBookingStore(state => state.setPickupLocation);
+    const setDropoffLocationState = useBookingStore(state => state.setDropoffLocation);
+
+    useEffect(() => {
+        const startDate = searchParams.get('startDate');
+        const endDate = searchParams.get('endDate');
+        const pickupLoc = searchParams.get('pickupLocation');
+        const dropoffLoc = searchParams.get('dropoffLocation');
+
+        if (startDate && endDate) {
+            setDatesState(startDate, endDate);
+        }
+        if (pickupLoc) {
+            setPickupLocationState(pickupLoc);
+        }
+        if (dropoffLoc) {
+            setDropoffLocationState(dropoffLoc);
+        }
+    }, [searchParams, setDatesState, setPickupLocationState, setDropoffLocationState]);
+
     const filteredVehicles = useMemo(() => {
-        return vehicles.filter((v) => {
+        return initialVehicles.filter((v) => {
             if (filters.vehicleType && v.type !== filters.vehicleType) return false;
             if (filters.transmission && v.transmission !== filters.transmission) return false;
-            if (v.pricePerDay < filters.minPrice || v.pricePerDay > filters.maxPrice) return false;
+
             return true;
         });
     }, [filters]);
@@ -37,14 +58,13 @@ function CatalogContentInner() {
     const activeFilterCount = [
         filters.vehicleType,
         filters.transmission,
-        filters.minPrice > PRICE_MIN || filters.maxPrice < PRICE_MAX,
+
     ].filter(Boolean).length;
 
     const resetFilters = () => {
         setFilters({
             startDate: null, endDate: null, pickupLocation: null,
             vehicleType: null, transmission: null,
-            minPrice: PRICE_MIN, maxPrice: PRICE_MAX,
         });
     };
 
@@ -118,31 +138,7 @@ function CatalogContentInner() {
                                     </div>
                                 </div>
 
-                                {/* Min Price */}
-                                <div>
-                                    <label className="block text-xs font-medium text-gray-500 dark:text-text-secondary mb-2 uppercase tracking-wide">
-                                        Precio mín. (S/): {filters.minPrice}
-                                    </label>
-                                    <input
-                                        type="range" min={PRICE_MIN} max={PRICE_MAX} step={10}
-                                        value={filters.minPrice}
-                                        onChange={(e) => setFilters(f => ({ ...f, minPrice: Number(e.target.value) }))}
-                                        className="w-full accent-primary cursor-pointer"
-                                    />
-                                </div>
 
-                                {/* Max Price */}
-                                <div>
-                                    <label className="block text-xs font-medium text-gray-500 dark:text-text-secondary mb-2 uppercase tracking-wide">
-                                        Precio máx. (S/): {filters.maxPrice}
-                                    </label>
-                                    <input
-                                        type="range" min={PRICE_MIN} max={PRICE_MAX} step={10}
-                                        value={filters.maxPrice}
-                                        onChange={(e) => setFilters(f => ({ ...f, maxPrice: Number(e.target.value) }))}
-                                        className="w-full accent-primary cursor-pointer"
-                                    />
-                                </div>
                             </div>
 
                             {activeFilterCount > 0 && (
@@ -181,10 +177,10 @@ function CatalogContentInner() {
     );
 }
 
-export default function CatalogContent() {
+export default function CatalogContent({ initialVehicles }: CatalogContentProps) {
     return (
         <Suspense fallback={<div className="h-screen w-full flex items-center justify-center animate-pulse bg-white/5" />}>
-            <CatalogContentInner />
+            <CatalogContentInner initialVehicles={initialVehicles} />
         </Suspense>
     );
 }

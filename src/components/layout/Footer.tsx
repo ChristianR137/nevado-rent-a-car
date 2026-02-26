@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { Phone, Mail, MapPin, Instagram, Facebook, Youtube } from 'lucide-react';
 import { generateWhatsAppLink } from '@/lib/utils/generateWhatsAppLink';
 
@@ -20,7 +21,10 @@ const footerLinks = {
 };
 
 export default function Footer() {
+    const pathname = usePathname();
     const whatsappLink = generateWhatsAppLink();
+
+    if (pathname.startsWith('/admin')) return null;
 
     return (
         <footer className="bg-gray-100 dark:bg-dark-800 border-t border-gray-200 dark:border-dark-600">

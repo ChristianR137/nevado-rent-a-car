@@ -1,319 +1,52 @@
+'use server'
+
+import { createClient } from '@/utils/supabase/server';
 import { Vehicle } from '@/types/vehicle';
 
-export const vehicles: Vehicle[] = [
-    {
-        id: '1',
-        slug: 'toyota-hilux-4x4-2023',
-        name: 'Toyota Hilux 4x4',
-        brand: 'Toyota',
-        model: 'Hilux',
-        year: 2023,
-        type: 'Pickup',
-        transmission: 'Automatico',
-        passengers: 5,
-        doors: 4,
-        luggage: 4,
-        fuelType: 'Diesel',
-        ac: true,
-        pricePerDay: 280,
-        images: [
-            '/images/vehicles/hilux-1.jpg',
-            '/images/vehicles/hilux-2.jpg',
-            '/images/vehicles/hilux-3.jpg',
-        ],
-        features: [
-            'Tracción 4x4 integral',
-            'Pantalla táctil 8"',
-            'Cámara de reversa',
-            'Control de crucero',
-            'Llantas AT para todo terreno',
-            'Bluetooth y Apple CarPlay',
-        ],
-        description: 'La Toyota Hilux 4x4 es la opción ideal para aventuras en el norte peruano. Con su potente motor de 2.8L turbo diésel y tracción integral, conquista los caminos más exigentes del desierto de Sechura y las playas de Piura con total seguridad.',
-        available: true,
-        isPopular: true,
-        rating: 4.9,
-        reviewCount: 48,
-    },
-    {
-        id: '2',
-        slug: 'toyota-land-cruiser-prado-2022',
-        name: 'Toyota Land Cruiser Prado',
-        brand: 'Toyota',
-        model: 'Land Cruiser Prado',
-        year: 2022,
-        type: 'SUV',
-        transmission: 'Automatico',
-        passengers: 7,
-        doors: 5,
-        luggage: 5,
-        fuelType: 'Diesel',
-        ac: true,
-        pricePerDay: 380,
-        images: [
-            '/images/vehicles/prado-1.jpg',
-            '/images/vehicles/prado-2.jpg',
-            '/images/vehicles/prado-3.jpg',
-        ],
-        features: [
-            'Tracción 4x4 con diferencial central',
-            'Asientos de cuero premium',
-            'Sistema de suspensión KDSS',
-            'Pantalla táctil premium 9"',
-            'Sunroof panorámico',
-            'Control de descenso HDC',
-        ],
-        description: 'El Land Cruiser Prado combina el máximo lujo con una capacidad off-road excepcional. Perfecto para grupos familiares que buscan explorar Piura y sus playas con comodidad y estilo premium.',
-        available: true,
-        isPopular: true,
-        rating: 4.8,
-        reviewCount: 36,
-    },
-    {
-        id: '3',
-        slug: 'mitsubishi-outlander-2023',
-        name: 'Mitsubishi Outlander',
-        brand: 'Mitsubishi',
-        model: 'Outlander',
-        year: 2023,
-        type: 'SUV',
-        transmission: 'Automatico',
-        passengers: 5,
-        doors: 5,
-        luggage: 3,
-        fuelType: 'Gasolina',
-        ac: true,
-        pricePerDay: 220,
-        images: [
-            '/images/vehicles/outlander-1.jpg',
-            '/images/vehicles/outlander-2.jpg',
-            '/images/vehicles/outlander-3.jpg',
-        ],
-        features: [
-            'AWD Super All Wheel Control',
-            'Apple CarPlay / Android Auto',
-            'Sistema de seguridad MI-PILOT',
-            'Pantalla táctil 12.3"',
-            'Cargador inalámbrico',
-            '360° DiamondStar',
-        ],
-        description: 'El Mitsubishi Outlander es el SUV perfecto para viajes familiares. Su sistema AWD garantiza tracción óptima en las rutas hacia las hermosas playas del norte, mientras su interior moderno asegura el máximo confort.',
-        available: true,
-        isPopular: true,
-        rating: 4.7,
-        reviewCount: 29,
-    },
-    {
-        id: '4',
-        slug: 'hyundai-tucson-2023',
-        name: 'Hyundai Tucson',
-        brand: 'Hyundai',
-        model: 'Tucson',
-        year: 2023,
-        type: 'SUV',
-        transmission: 'Automatico',
-        passengers: 5,
-        doors: 5,
-        luggage: 2,
-        fuelType: 'Gasolina',
-        ac: true,
-        pricePerDay: 190,
-        images: [
-            '/images/vehicles/tucson-1.jpg',
-            '/images/vehicles/tucson-2.jpg',
-            '/images/vehicles/tucson-3.jpg',
-        ],
-        features: [
-            'HTRAC AWD inteligente',
-            'Diseño Parametric Dynamics',
-            'Pantalla digital 10.25"',
-            'Highway Driving Assist',
-            'Ventilación de asientos',
-            'Head-Up Display',
-        ],
-        description: 'El Hyundai Tucson ofrece el equilibrio perfecto entre diseño vanguardista, tecnología avanzada y potencia. Una excelente opción para explorar Piura con eficiencia y estilo.',
-        available: true,
-        isPopular: false,
-        rating: 4.6,
-        reviewCount: 22,
-    },
-    {
-        id: '5',
-        slug: 'toyota-yaris-2023',
-        name: 'Toyota Yaris',
-        brand: 'Toyota',
-        model: 'Yaris',
-        year: 2023,
-        type: 'Economico',
-        transmission: 'Automatico',
-        passengers: 5,
-        doors: 4,
-        luggage: 2,
-        fuelType: 'Gasolina',
-        ac: true,
-        pricePerDay: 95,
-        images: [
-            '/images/vehicles/yaris-1.jpg',
-            '/images/vehicles/yaris-2.jpg',
-            '/images/vehicles/yaris-3.jpg',
-        ],
-        features: [
-            'Motor 1.5L eficiente',
-            'Toyota Safety Sense',
-            'Pantalla táctil 7"',
-            'Apple CarPlay inalámbrico',
-            'Cámara de reversa',
-            'Bajo consumo de combustible',
-        ],
-        description: 'El Toyota Yaris es nuestra opción más económica sin sacrificar calidad ni seguridad. Ideal para viajes en la ciudad de Piura y balnearios cercanos como Colán.',
-        available: true,
-        isPopular: false,
-        rating: 4.5,
-        reviewCount: 41,
-    },
-    {
-        id: '6',
-        slug: 'kia-sportage-2022',
-        name: 'Kia Sportage',
-        brand: 'Kia',
-        model: 'Sportage',
-        year: 2022,
-        type: 'SUV',
-        transmission: 'Manual',
-        passengers: 5,
-        doors: 5,
-        luggage: 2,
-        fuelType: 'Gasolina',
-        ac: true,
-        pricePerDay: 160,
-        images: [
-            '/images/vehicles/sportage-1.jpg',
-            '/images/vehicles/sportage-2.jpg',
-            '/images/vehicles/sportage-3.jpg',
-        ],
-        features: [
-            'AWD con control de tracción',
-            'Pantalla táctil 8"',
-            'ADAS de seguridad activa',
-            'Asientos calefactados',
-            'Techo solar eléctrico',
-            'Iluminación ambiental interior',
-        ],
-        description: 'El Kia Sportage combina diseño moderno con practicidad. Su tracción AWD y altura al piso lo hacen versátil para rutas mixtas en la región de Piura.',
-        available: true,
-        isPopular: false,
-        rating: 4.4,
-        reviewCount: 18,
-    },
-    {
-        id: '7',
-        slug: 'ford-ranger-4x4-2023',
-        name: 'Ford Ranger 4x4',
-        brand: 'Ford',
-        model: 'Ranger',
-        year: 2023,
-        type: 'Pickup',
-        transmission: 'Automatico',
-        passengers: 5,
-        doors: 4,
-        luggage: 6,
-        fuelType: 'Diesel',
-        ac: true,
-        pricePerDay: 260,
-        images: [
-            '/images/vehicles/ranger-1.jpg',
-            '/images/vehicles/ranger-2.jpg',
-            '/images/vehicles/ranger-3.jpg',
-        ],
-        features: [
-            'Motor 2.0L Bi-Turbo',
-            'Tracción 4x4 inteligente iAWD',
-            'SYNC 4A con IA integrada',
-            'Matrix LED',
-            'Suspensión trasera coil spring',
-            'Capacidad de carga 1 tonelada',
-        ],
-        description: 'La Ford Ranger es la pickup más avanzada de nuestra flota. Con su motor bi-turbo y tracción inteligente, es la elección ideal para rutas de tierra, haciendas y destinos remotos del norte del Perú.',
-        available: true,
-        isPopular: true,
-        rating: 4.8,
-        reviewCount: 31,
-    },
-    {
-        id: '8',
-        slug: 'nissan-sentra-2023',
-        name: 'Nissan Sentra',
-        brand: 'Nissan',
-        model: 'Sentra',
-        year: 2023,
-        type: 'Sedan',
-        transmission: 'Automatico',
-        passengers: 5,
-        doors: 4,
-        luggage: 2,
-        fuelType: 'Gasolina',
-        ac: true,
-        pricePerDay: 120,
-        images: [
-            '/images/vehicles/sentra-1.jpg',
-            '/images/vehicles/sentra-2.jpg',
-            '/images/vehicles/sentra-3.jpg',
-        ],
-        features: [
-            'Motor 2.0L 149 HP',
-            'ProPilot Assist',
-            'Pantalla táctil 8"',
-            'Bose Premium Audio',
-            'Zero Gravity seats',
-            'Nissan Safety Shield 360',
-        ],
-        description: 'El Nissan Sentra es nuestro sedán premium, con un diseño elegante y una conducción cómoda. Perfecto para ejecutivos y viajeros que recorren la ciudad de Piura con clase.',
-        available: true,
-        isPopular: false,
-        rating: 4.5,
-        reviewCount: 24,
-    },
-    {
-        id: '9',
-        slug: 'toyota-fortuner',
-        name: 'Toyota Fortuner',
-        brand: 'Toyota',
-        model: 'Fortuner',
-        year: 2024,
-        type: 'SUV',
-        transmission: 'Automatico',
-        passengers: 7,
-        doors: 5,
-        luggage: 4,
-        fuelType: 'Diesel',
-        ac: true,
-        pricePerDay: 450,
-        images: [
-            '/images/vehicles/fortuner-1.jpg',
-            '/images/vehicles/fortuner-2.jpg',
-            '/images/vehicles/fortuner-3.jpg',
-        ],
-        features: [
-            'Motor 2.8L turbo diésel, 201 CV',
-            'Tracción 4x4 Automático',
-            '7 Asientos de lujo',
-            'Pantalla multimedia con Apple CarPlay / Android Auto',
-            'Cámara retrovisora',
-            'Aire acondicionado automático bi-zona',
-        ],
-        description: 'Conquista cada rincón del norte peruano con el Toyota Fortuner. Un vehículo imponente diseñado para ofrecer lujo en el interior y agresividad todoterreno en el exterior. Su potente motor de 2.8L turbo diésel, 201 CV y tracción 4x4 te llevarán a cualquier destino con facilidad y confort.',
-        available: true,
-        isPopular: true,
-        rating: 4.9,
-        reviewCount: 52,
-    },
-];
+export async function getVehicles(): Promise<Vehicle[]> {
+    const supabase = await createClient();
+    const { data: vehicles } = await supabase
+        .from('vehicles')
+        .select('*')
+        .order('created_at', { ascending: false });
 
-export const getFeaturedVehicles = (): Vehicle[] =>
-    vehicles.filter((v) => v.isPopular && v.available).slice(0, 4);
+    return vehicles as unknown as Vehicle[] || [];
+}
 
-export const getVehicleBySlug = (slug: string): Vehicle | undefined =>
-    vehicles.find((v) => v.slug === slug);
+export async function getFeaturedVehicles(): Promise<Vehicle[]> {
+    const supabase = await createClient();
+    const { data: vehicles } = await supabase
+        .from('vehicles')
+        .select('*')
+        .eq('isPopular', true)
+        .eq('available', true)
+        .order('created_at', { ascending: false })
+        .limit(4);
 
-export const getRelatedVehicles = (vehicleId: string, type: string): Vehicle[] =>
-    vehicles.filter((v) => v.id !== vehicleId && v.type === type && v.available).slice(0, 3);
+    return vehicles as unknown as Vehicle[] || [];
+}
+
+export async function getVehicleBySlug(slug: string): Promise<Vehicle | undefined> {
+    const supabase = await createClient();
+    const { data: vehicle } = await supabase
+        .from('vehicles')
+        .select('*')
+        .eq('slug', slug)
+        .single();
+
+    if (!vehicle) return undefined;
+    return vehicle as unknown as Vehicle;
+}
+
+export async function getRelatedVehicles(vehicleId: string, type: string): Promise<Vehicle[]> {
+    const supabase = await createClient();
+    const { data: vehicles } = await supabase
+        .from('vehicles')
+        .select('*')
+        .neq('id', vehicleId)
+        .eq('type', type)
+        .eq('available', true)
+        .limit(3);
+
+    return vehicles as unknown as Vehicle[] || [];
+}

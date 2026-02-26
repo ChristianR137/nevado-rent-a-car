@@ -1,0 +1,32 @@
+import { ArrowLeft, Briefcase } from 'lucide-react';
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import ServiceForm from '../ServiceForm';
+
+export const metadata: Metadata = {
+    title: 'Nuevo Servicio Adicional | Nevado Admin',
+};
+
+export default function NewServicePage() {
+    return (
+        <div className="space-y-6 animate-fade-in max-w-4xl mx-auto">
+            <div className="flex items-center gap-4 pb-4 border-b border-gray-200 dark:border-dark-700">
+                <Link
+                    href="/admin/services"
+                    className="p-2 hover:bg-gray-100 dark:hover:bg-dark-700 rounded-lg transition-colors text-gray-500"
+                >
+                    <ArrowLeft size={20} />
+                </Link>
+                <div>
+                    <h1 className="text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-3">
+                        <Briefcase className="text-primary" />
+                        Crear Nuevo Servicio
+                    </h1>
+                    <p className="text-gray-500 dark:text-gray-400 mt-1">Añade un nuevo servicio extra a tu lista de opciones disponibles.</p>
+                </div>
+            </div>
+
+            <ServiceForm />
+        </div>
+    );
+}

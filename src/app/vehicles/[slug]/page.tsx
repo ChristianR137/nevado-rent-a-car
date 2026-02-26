@@ -1,7 +1,9 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Users, Settings, Fuel, Briefcase, Shield, ArrowLeft, Check, DoorOpen } from 'lucide-react';
 import { getVehicleBySlug, getRelatedVehicles } from '@/lib/data/vehicles';
+import { getAdditionalServices } from '@/lib/data/services';
 import { formatCurrency } from '@/lib/utils/formatCurrency';
 import BookingPanel from '@/components/vehicle/BookingPanel';
 import VehicleCard from '@/components/catalog/VehicleCard';
@@ -13,7 +15,7 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
     const { slug } = await params;
-    const vehicle = getVehicleBySlug(slug);
+    const vehicle = await getVehicleBySlug(slug);
     if (!vehicle) return { title: 'Vehículo no encontrado' };
     return {
         title: `${vehicle.name} ${vehicle.year} – Alquiler en Piura`,
@@ -23,10 +25,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function VehicleDetailPage({ params }: PageProps) {
     const { slug } = await params;
-    const vehicle = getVehicleBySlug(slug);
+    const vehicle = await getVehicleBySlug(slug);
     if (!vehicle) notFound();
 
-    const related = getRelatedVehicles(vehicle.id, vehicle.type);
+    const related = await getRelatedVehicles(vehicle.id, vehicle.type);
+    const availableServices = await getAdditionalServices();
 
     const specs = [
         { icon: Users, label: 'Pasajeros', value: `${vehicle.passengers} personas` },
@@ -69,15 +72,26 @@ export default async function VehicleDetailPage({ params }: PageProps) {
 
 
 
-                        {/* Image Gallery Placeholder */}
-                        <div className="rounded-2xl overflow-hidden bg-gray-100 dark:bg-dark-800 border border-gray-200 dark:border-dark-600">
-                            <div className="h-72 md:h-96 bg-gradient-to-br from-gray-200 to-gray-100 dark:from-dark-700 dark:to-dark-600 flex items-center justify-center">
-                                <div className="text-center">
-                                    <div className="text-8xl mb-4 opacity-30">🚗</div>
-                                    <p className="text-gray-400 dark:text-text-muted text-sm">Galería de imágenes</p>
-                                    <p className="text-gray-400 dark:text-text-muted text-xs mt-1">{vehicle.name}</p>
+                        {/* Image Gallery */}
+                        <div className="rounded-2xl overflow-hidden bg-gray-100 dark:bg-dark-800 border border-gray-200 dark:border-dark-600 relative h-72 md:h-96">
+                            {vehicle.images && vehicle.images[0] && vehicle.images[0].startsWith('http') ? (
+                                <Image
+                                    src={vehicle.images[0]}
+                                    alt={vehicle.name}
+                                    fill
+                                    className="object-cover"
+                                    sizes="(max-width: 1024px) 100vw, 66vw"
+                                    priority
+                                />
+                            ) : (
+                                <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-100 dark:from-dark-700 dark:to-dark-600 flex items-center justify-center">
+                                    <div className="text-center">
+                                        <div className="text-8xl mb-4 opacity-30">🚗</div>
+                                        <p className="text-gray-400 dark:text-text-muted text-sm">Galería de imágenes</p>
+                                        <p className="text-gray-400 dark:text-text-muted text-xs mt-1">{vehicle.name}</p>
+                                    </div>
                                 </div>
-                            </div>
+                            )}
                         </div>
 
                         {/* Description */}
@@ -124,7 +138,7 @@ export default async function VehicleDetailPage({ params }: PageProps) {
                     {/* Right: Booking Panel */}
                     <div className="lg:col-span-1">
                         <div className="sticky top-24">
-                            <BookingPanel vehicle={vehicle} />
+                            <BookingPanel vehicle={vehicle} availableServices={availableServices} />
                         </div>
                     </div>
                 </div>

@@ -5,11 +5,10 @@ interface WhatsAppOptions {
     startDate?: string;
     endDate?: string;
     pickupLocation?: string;
-    totalPrice?: number;
 }
 
 export const generateWhatsAppLink = (options: WhatsAppOptions = {}): string => {
-    const { vehicleName, startDate, endDate, pickupLocation, totalPrice } = options;
+    const { vehicleName, startDate, endDate, pickupLocation } = options;
 
     let message = '¡Hola! Me interesa alquilar un vehículo con *Nevado Rent A Car*.';
 
@@ -21,9 +20,6 @@ export const generateWhatsAppLink = (options: WhatsAppOptions = {}): string => {
     }
     if (pickupLocation) {
         message += `\n📍 *Recojo:* ${pickupLocation}`;
-    }
-    if (totalPrice) {
-        message += `\n💰 *Total estimado:* S/ ${totalPrice}`;
     }
 
     message += '\n\n¿Podrían confirmarme la disponibilidad? Gracias 🙏';

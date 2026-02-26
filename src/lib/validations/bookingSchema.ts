@@ -17,6 +17,8 @@ export const bookingSchema = z.object({
     email: z.string().email('Correo electrónico inválido'),
     pickupLocation: z.string().min(1, 'Selecciona un lugar de entrega'),
     pickupDetail: z.string().max(20, 'Máximo 20 caracteres').optional(),
+    dropoffLocation: z.string().min(1, 'Selecciona un lugar de devolución'),
+    dropoffDetail: z.string().max(20, 'Máximo 20 caracteres').optional(),
     startDate: z.string().min(1, 'Selecciona la fecha de inicio'),
     endDate: z.string().min(1, 'Selecciona la fecha de fin'),
 }).refine(

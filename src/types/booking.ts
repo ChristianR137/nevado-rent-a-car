@@ -7,6 +7,7 @@ export interface AdditionalService {
     pricePerDay: number;
     icon: string;
     isPopular: boolean;
+    isIncluded: boolean;
 }
 
 export interface Booking {
@@ -20,6 +21,7 @@ export interface Booking {
     email: string;
     // Rental details
     pickupLocation: string;
+    dropoffLocation: string;
     startDate: string;
     endDate: string;
     totalDays: number;
@@ -37,6 +39,7 @@ export interface BookingFormData {
     phone: string;
     email: string;
     pickupLocation: string;
+    dropoffLocation: string;
     startDate: string;
     endDate: string;
 }

@@ -1,8 +1,7 @@
 import { Metadata } from 'next';
-import { UserCheck, Shield, Plane, Headphones, MapPin, Baby } from 'lucide-react';
+import * as LucideIcons from 'lucide-react';
 import Link from 'next/link';
-import { ADDITIONAL_SERVICES } from '@/constants/additionalServices';
-import { formatCurrency } from '@/lib/utils/formatCurrency';
+import { getAdditionalServices } from '@/lib/data/services';
 
 export const metadata: Metadata = {
     title: 'Servicios Adicionales',
@@ -10,11 +9,15 @@ export const metadata: Metadata = {
         'Personaliza tu alquiler con conductor privado, seguro adicional, entrega en aeropuerto y más.',
 };
 
-const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
-    UserCheck, Shield, Plane, Headphones, MapPin, Baby,
+export const dynamic = 'force-dynamic';
+
+const DynamicIcon = ({ name, ...props }: { name: string;[key: string]: any }) => {
+    const Icon = (LucideIcons as any)[name] || LucideIcons.HelpCircle;
+    return <Icon {...props} />;
 };
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+    const services = await getAdditionalServices();
     return (
         <div className="min-h-screen bg-white dark:bg-dark pt-20">
             {/* Header */}
@@ -33,27 +36,18 @@ export default function ServicesPage() {
 
             <div className="container-custom py-14">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-14">
-                    {ADDITIONAL_SERVICES.map((svc) => {
-                        const Icon = iconMap[svc.icon] || Shield;
-                        return (
-                            <div key={svc.id} className="card-glass p-6 hover-card group">
-                                {svc.isPopular && (
-                                    <span className="badge-primary text-xs mb-4 block w-fit">Más solicitado</span>
-                                )}
-                                <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                                    <Icon size={22} className="text-primary" />
-                                </div>
-                                <h2 className="font-serif text-xl font-semibold text-gray-900 dark:text-white mb-2">{svc.name}</h2>
-                                <p className="text-gray-500 dark:text-text-secondary text-sm leading-relaxed mb-5">{svc.description}</p>
-                                <div className="flex items-center justify-between">
-                                    <span className="text-2xl font-bold text-gray-900 dark:text-white">
-                                        {formatCurrency(svc.pricePerDay)}
-                                        <span className="text-gray-400 dark:text-text-secondary text-sm font-normal">/día</span>
-                                    </span>
-                                </div>
+                    {services.map((svc) => (
+                        <div key={svc.id} className="card-glass p-6 hover-card group">
+                            {svc.isPopular && (
+                                <span className="badge-primary text-xs mb-4 block w-fit">Más solicitado</span>
+                            )}
+                            <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                                <DynamicIcon name={svc.icon || 'HelpCircle'} size={22} className="text-primary" />
                             </div>
-                        );
-                    })}
+                            <h2 className="font-serif text-xl font-semibold text-gray-900 dark:text-white mb-2">{svc.name}</h2>
+                            <p className="text-gray-500 dark:text-text-secondary text-sm leading-relaxed mb-5">{svc.description}</p>
+                        </div>
+                    ))}
                 </div>
 
                 {/* How it works */}

@@ -8,6 +8,7 @@ interface BookingState {
     startDate: string | null;
     endDate: string | null;
     pickupLocation: string | null;
+    dropoffLocation: string | null;
     additionalServices: AdditionalService[];
     totalDays: number;
     subtotal: number;
@@ -18,6 +19,7 @@ interface BookingState {
     setVehicle: (vehicle: Vehicle | null) => void;
     setDates: (startDate: string, endDate: string) => void;
     setPickupLocation: (location: string) => void;
+    setDropoffLocation: (location: string) => void;
     toggleService: (service: AdditionalService) => void;
     removeService: (serviceId: string) => void;
     reset: () => void;
@@ -32,7 +34,7 @@ const computeTotals = (
     const days =
         startDate && endDate ? calculateDays(startDate, endDate) : 0;
     const subtotal = vehicle ? vehicle.pricePerDay * days : 0;
-    const servicesTotal = services.reduce((acc, s) => acc + s.pricePerDay * days, 0);
+    const servicesTotal = services.reduce((acc, s) => acc + (s.isIncluded ? 0 : s.pricePerDay * days), 0);
     return { totalDays: days, subtotal, servicesTotal, totalPrice: subtotal + servicesTotal };
 };
 
@@ -41,6 +43,7 @@ export const useBookingStore = create<BookingState>((set, get) => ({
     startDate: null,
     endDate: null,
     pickupLocation: null,
+    dropoffLocation: null,
     additionalServices: [],
     totalDays: 0,
     subtotal: 0,
@@ -60,6 +63,8 @@ export const useBookingStore = create<BookingState>((set, get) => ({
     },
 
     setPickupLocation: (pickupLocation) => set({ pickupLocation }),
+
+    setDropoffLocation: (dropoffLocation) => set({ dropoffLocation }),
 
     toggleService: (service) => {
         const { additionalServices, selectedVehicle, startDate, endDate } = get();
@@ -84,6 +89,7 @@ export const useBookingStore = create<BookingState>((set, get) => ({
             startDate: null,
             endDate: null,
             pickupLocation: null,
+            dropoffLocation: null,
             additionalServices: [],
             totalDays: 0,
             subtotal: 0,

@@ -32,6 +32,4 @@ export interface SearchFilters {
     pickupLocation: string | null;
     vehicleType: VehicleType | null;
     transmission: TransmissionType | null;
-    minPrice: number;
-    maxPrice: number;
 }
